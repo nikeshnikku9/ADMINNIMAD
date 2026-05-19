@@ -12,9 +12,16 @@ export default function AdminLoginPage() {
 
   const handleLogin = () => {
 
-    if (username === "admin" && password === "1234") {
+    // LOGIN DETAILS
+    if (
+      username === "admin" &&
+      password === "nikesh@09"
+    ) {
 
-      localStorage.setItem("nimad-admin-login", "true");
+      localStorage.setItem(
+        "nimad-admin-login",
+        "true"
+      );
 
       router.push("/admin/dashboard");
 
@@ -35,18 +42,18 @@ export default function AdminLoginPage() {
         justifyContent: "center",
         alignItems: "center",
         background:
-          "linear-gradient(to right, #2a120d, #5a2415)"
+          "linear-gradient(to right, #2a120d, #4d1f14)"
       }}
     >
 
       <div
         style={{
           width: "420px",
-          background: "#1f1f1f",
+          background: "rgba(0,0,0,0.82)",
           padding: "40px",
-          borderRadius: "20px",
-          boxShadow: "0 0 25px rgba(255,215,0,0.3)",
-          border: "2px solid #f4c400"
+          borderRadius: "24px",
+          border: "2px solid #f4c400",
+          boxShadow: "0 0 35px rgba(255,215,0,0.3)"
         }}
       >
 
@@ -57,11 +64,21 @@ export default function AdminLoginPage() {
           }}
         >
 
+          <div
+            style={{
+              fontSize: "55px",
+              marginBottom: "10px"
+            }}
+          >
+            🔐
+          </div>
+
           <h1
             style={{
               color: "#f4c400",
               fontSize: "42px",
-              marginBottom: "10px"
+              marginBottom: "10px",
+              fontWeight: "bold"
             }}
           >
             Admin Login
@@ -69,8 +86,9 @@ export default function AdminLoginPage() {
 
           <p
             style={{
-              color: "white",
-              fontSize: "18px"
+              color: "#fff",
+              fontSize: "18px",
+              letterSpacing: "1px"
             }}
           >
             NIMAD ZAYKA SPICES
@@ -78,13 +96,15 @@ export default function AdminLoginPage() {
 
         </div>
 
+        {/* USERNAME */}
         <div style={{ marginBottom: "20px" }}>
 
           <label
             style={{
-              color: "white",
+              color: "#fff",
               display: "block",
-              marginBottom: "8px"
+              marginBottom: "8px",
+              fontWeight: "bold"
             }}
           >
             Username
@@ -94,25 +114,23 @@ export default function AdminLoginPage() {
             type="text"
             placeholder="Enter username"
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            style={{
-              width: "100%",
-              padding: "14px",
-              borderRadius: "10px",
-              border: "1px solid #555",
-              fontSize: "16px"
-            }}
+            onChange={(e) =>
+              setUsername(e.target.value)
+            }
+            style={inputStyle}
           />
 
         </div>
 
+        {/* PASSWORD */}
         <div style={{ marginBottom: "25px" }}>
 
           <label
             style={{
-              color: "white",
+              color: "#fff",
               display: "block",
-              marginBottom: "8px"
+              marginBottom: "8px",
+              fontWeight: "bold"
             }}
           >
             Password
@@ -122,46 +140,31 @@ export default function AdminLoginPage() {
             type="password"
             placeholder="Enter password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            style={{
-              width: "100%",
-              padding: "14px",
-              borderRadius: "10px",
-              border: "1px solid #555",
-              fontSize: "16px"
-            }}
+            onChange={(e) =>
+              setPassword(e.target.value)
+            }
+            style={inputStyle}
           />
 
         </div>
 
+        {/* LOGIN BUTTON */}
         <button
           onClick={handleLogin}
           style={{
             width: "100%",
-            padding: "15px",
-            borderRadius: "12px",
-            border: "none",
+            padding: "16px",
             background: "#f4c400",
-            color: "#111",
+            border: "none",
+            borderRadius: "14px",
             fontWeight: "bold",
             fontSize: "18px",
-            cursor: "pointer"
+            cursor: "pointer",
+            transition: "0.3s"
           }}
         >
           Login to Dashboard
         </button>
-
-        <div
-          style={{
-            marginTop: "25px",
-            textAlign: "center",
-            color: "#bbb",
-            fontSize: "14px"
-          }}
-        >
-          Username: admin <br />
-          Password: 1234
-        </div>
 
       </div>
 
@@ -170,3 +173,14 @@ export default function AdminLoginPage() {
   );
 
 }
+
+const inputStyle = {
+  width: "100%",
+  padding: "15px",
+  borderRadius: "12px",
+  border: "1px solid #666",
+  background: "#222",
+  color: "#fff",
+  fontSize: "16px",
+  outline: "none"
+};
