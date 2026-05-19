@@ -11,18 +11,35 @@ export default function AdminPage() {
           borderRight: "1px solid #ddd",
         }}
       >
-        <h2 style={{ color: "#7a2e1f" }}>ADMIN PORTAL</h2>
+        <h2
+          style={{
+            color: "#7a2e1f",
+            marginBottom: "40px",
+          }}
+        >
+          ADMIN PORTAL
+        </h2>
 
-        <div style={{ marginTop: "30px", lineHeight: "40px" }}>
-          <p>Dashboard</p>
-          <p>Products</p>
-          <p>QR Generator</p>
-          <p>Barcode Studio</p>
-          <p>Enquiries</p>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+          }}
+        >
+          <button style={activeBtn}>Dashboard</button>
+
+          <button style={menuBtn}>Products</button>
+
+          <button style={menuBtn}>QR Generator</button>
+
+          <button style={menuBtn}>Barcode Studio</button>
+
+          <button style={menuBtn}>Enquiries</button>
         </div>
       </div>
 
-      {/* Main */}
+      {/* Main Content */}
       <div
         style={{
           flex: 1,
@@ -76,4 +93,27 @@ const cardStyle = {
   padding: "30px",
   borderRadius: "15px",
   border: "1px solid #5a3a2c",
+};
+
+const menuBtn = {
+  padding: "15px",
+  borderRadius: "12px",
+  border: "none",
+  background: "transparent",
+  textAlign: "left",
+  cursor: "pointer",
+  fontSize: "16px",
+  fontWeight: "600",
+};
+
+const activeBtn = {
+  padding: "15px",
+  borderRadius: "12px",
+  border: "none",
+  background: "#f0b400",
+  color: "#000",
+  textAlign: "left",
+  cursor: "pointer",
+  fontSize: "16px",
+  fontWeight: "700",
 };
