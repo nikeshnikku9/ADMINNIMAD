@@ -1,119 +1,251 @@
-export default function AdminPage() {
+"use client";
+
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+
+export default function AdminLogin() {
+
+  const router = useRouter();
+
+  const [username, setUsername] =
+    useState("");
+
+  const [password, setPassword] =
+    useState("");
+
+  useEffect(() => {
+
+    const auth =
+      localStorage.getItem("nimad-admin");
+
+    if (auth === "loggedin") {
+
+      router.push("/admin/dashboard");
+
+    }
+
+  }, []);
+
+  const handleLogin = () => {
+
+    if (
+      username === "admin" &&
+      password === "nimad123"
+    ) {
+
+      localStorage.setItem(
+        "nimad-admin",
+        "loggedin"
+      );
+
+      router.push("/admin/dashboard");
+
+    } else {
+
+      alert("Wrong Username or Password");
+
+    }
+
+  };
+
   return (
-    <div style={{ display: "flex", minHeight: "100vh" }}>
 
-      {/* Sidebar */}
+    <main
+      style={{
+
+        minHeight: "100vh",
+
+        background:
+          "linear-gradient(rgba(0,0,0,.75), rgba(0,0,0,.88)), url('https://images.unsplash.com/photo-1601050690597-df0568f70950?q=80&w=1600&auto=format&fit=crop')",
+
+        backgroundSize: "cover",
+
+        backgroundPosition: "center",
+
+        display: "flex",
+
+        justifyContent: "center",
+
+        alignItems: "center",
+
+        padding: "20px",
+
+      }}
+    >
+
       <div
         style={{
-          width: "260px",
-          background: "#f5f1e8",
-          padding: "20px",
-          borderRight: "1px solid #ddd",
-        }}
-      >
-        <h2
-          style={{
-            color: "#7a2e1f",
-            marginBottom: "40px",
-          }}
-        >
-          ADMIN PORTAL
-        </h2>
 
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "15px",
-          }}
-        >
-          <button style={activeBtn}>Dashboard</button>
+          width: "100%",
 
-          <button style={menuBtn}>Products</button>
+          maxWidth: "420px",
 
-          <button style={menuBtn}>QR Generator</button>
+          background:
+            "rgba(0,0,0,.45)",
 
-          <button style={menuBtn}>Barcode Studio</button>
+          backdropFilter: "blur(15px)",
 
-          <button style={menuBtn}>Enquiries</button>
-        </div>
-      </div>
+          border:
+            "1px solid rgba(255,215,0,.25)",
 
-      {/* Main Content */}
-      <div
-        style={{
-          flex: 1,
-          background: "#2b1810",
+          borderRadius: "28px",
+
+          padding: "35px",
+
           color: "white",
-          padding: "40px",
+
+          boxShadow:
+            "0 0 40px rgba(255,174,0,.15)",
+
         }}
       >
-        <h1 style={{ fontSize: "42px" }}>Welcome Back</h1>
 
-        <p style={{ color: "#d6c2b0" }}>
-          Here's what's happening with Nimad ZAYKA today.
-        </p>
-
-        {/* Cards */}
         <div
           style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(4,1fr)",
-            gap: "20px",
-            marginTop: "40px",
+            textAlign: "center",
+            marginBottom: "30px",
           }}
         >
-          <div style={cardStyle}>
-            <h2>120</h2>
-            <p>Total Products</p>
+
+          <div
+            style={{
+              fontSize: "60px",
+              marginBottom: "12px",
+            }}
+          >
+            🔐
           </div>
 
-          <div style={cardStyle}>
-            <h2>25</h2>
-            <p>Distributor Enquiries</p>
-          </div>
+          <h1
+            style={{
+              fontSize: "38px",
+              color: "#f5c542",
+            }}
+          >
+            Admin Login
+          </h1>
 
-          <div style={cardStyle}>
-            <h2>850</h2>
-            <p>Total Page Views</p>
-          </div>
+          <p
+            style={{
+              marginTop: "10px",
+              color: "#ddd",
+            }}
+          >
+            NIMAD ZAYKA SPICES
+          </p>
 
-          <div style={cardStyle}>
-            <h2>312</h2>
-            <p>WhatsApp Clicks</p>
-          </div>
         </div>
+
+        <div
+          style={{
+            marginBottom: "20px",
+          }}
+        >
+
+          <label>
+            Username
+          </label>
+
+          <input
+            value={username}
+
+            onChange={(e)=>
+              setUsername(e.target.value)
+            }
+
+            placeholder="Enter username"
+
+            style={inputStyle}
+          />
+
+        </div>
+
+        <div
+          style={{
+            marginBottom: "25px",
+          }}
+        >
+
+          <label>
+            Password
+          </label>
+
+          <input
+            type="password"
+
+            value={password}
+
+            onChange={(e)=>
+              setPassword(e.target.value)
+            }
+
+            placeholder="Enter password"
+
+            style={inputStyle}
+          />
+
+        </div>
+
+        <button
+          onClick={handleLogin}
+
+          style={{
+
+            width: "100%",
+
+            padding: "16px",
+
+            border: "none",
+
+            borderRadius: "16px",
+
+            background:
+              "linear-gradient(135deg,#b8860b,#ffcc00)",
+
+            color: "black",
+
+            fontWeight: "bold",
+
+            fontSize: "18px",
+
+            cursor: "pointer",
+
+            boxShadow:
+              "0 0 20px rgba(255,215,0,.25)",
+
+          }}
+        >
+          Login to Dashboard
+        </button>
+
       </div>
-    </div>
+
+    </main>
+
   );
+
 }
 
-const cardStyle = {
-  background: "#3a2218",
-  padding: "30px",
-  borderRadius: "15px",
-  border: "1px solid #5a3a2c",
-};
+const inputStyle = {
 
-const menuBtn = {
-  padding: "15px",
-  borderRadius: "12px",
-  border: "none",
-  background: "transparent",
-  textAlign: "left",
-  cursor: "pointer",
-  fontSize: "16px",
-  fontWeight: "600",
-};
+  width: "100%",
 
-const activeBtn = {
   padding: "15px",
-  borderRadius: "12px",
-  border: "none",
-  background: "#f0b400",
-  color: "#000",
-  textAlign: "left",
-  cursor: "pointer",
+
+  marginTop: "8px",
+
+  borderRadius: "14px",
+
+  border:
+    "1px solid rgba(255,255,255,.15)",
+
+  background:
+    "rgba(255,255,255,.08)",
+
+  color: "white",
+
   fontSize: "16px",
-  fontWeight: "700",
+
+  outline: "none",
+
 };
