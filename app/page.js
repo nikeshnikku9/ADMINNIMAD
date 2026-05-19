@@ -62,13 +62,16 @@ export default function Home() {
         minHeight: "100vh",
 
         background:
-          "linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.88)), url('https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?q=80&w=1600&auto=format&fit=crop')",
+          "linear-gradient(rgba(0,0,0,0.68), rgba(0,0,0,0.88)), url('https://images.unsplash.com/photo-1601050690597-df0568f70950?q=80&w=1600&auto=format&fit=crop')",
 
         backgroundSize: "cover",
 
-        backgroundPosition: "center",
+        backgroundPosition: "center center",
 
         backgroundAttachment: "fixed",
+
+        boxShadow:
+          "inset 0 0 180px rgba(0,0,0,.65)",
 
         padding: "20px",
 
