@@ -1,37 +1,104 @@
-export default function Dashboard() {
+"use client"
+
+export default function DashboardPage() {
+
+  const stats = [
+    {
+      title: "Total Products",
+      value: 29
+    },
+    {
+      title: "QR Codes",
+      value: 120
+    },
+    {
+      title: "Barcodes",
+      value: 210
+    },
+    {
+      title: "Enquiries",
+      value: 0
+    }
+  ]
+
   return (
-    <div className="p-10 text-white min-h-screen bg-[#3b1408]">
-      <h1 className="text-6xl font-bold mb-3">
+
+    <div
+      style={{
+        background: "#3b1308",
+        minHeight: "100vh",
+        padding: "40px",
+        color: "white"
+      }}
+    >
+
+      <h1
+        style={{
+          fontSize: "55px",
+          fontWeight: "bold",
+          marginBottom: "10px"
+        }}
+      >
         Welcome Back
       </h1>
 
-      <p className="text-xl text-orange-100 mb-10">
-        Here's what's happening with Nimad ZAYKA today.
+      <p
+        style={{
+          fontSize: "22px",
+          color: "#f5d0a9",
+          marginBottom: "40px"
+        }}
+      >
+        Nimad ZAYKA Admin Dashboard
       </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit,minmax(250px,1fr))",
+          gap: "25px"
+        }}
+      >
 
-        <div className="bg-[#5a2414] rounded-3xl p-8 shadow-xl">
-          <h2 className="text-5xl font-bold">120</h2>
-          <p className="mt-4 text-xl">Total Products</p>
-        </div>
+        {stats.map((item, index) => (
 
-        <div className="bg-[#5a2414] rounded-3xl p-8 shadow-xl">
-          <h2 className="text-5xl font-bold">25</h2>
-          <p className="mt-4 text-xl">Distributor Enquiries</p>
-        </div>
+          <div
+            key={index}
+            style={{
+              background: "#5b2a1d",
+              padding: "30px",
+              borderRadius: "20px",
+              border: "1px solid #8b5e3c"
+            }}
+          >
 
-        <div className="bg-[#5a2414] rounded-3xl p-8 shadow-xl">
-          <h2 className="text-5xl font-bold">850</h2>
-          <p className="mt-4 text-xl">Total Page Views</p>
-        </div>
+            <h2
+              style={{
+                fontSize: "20px",
+                color: "#facc15",
+                marginBottom: "15px"
+              }}
+            >
+              {item.title}
+            </h2>
 
-        <div className="bg-[#5a2414] rounded-3xl p-8 shadow-xl">
-          <h2 className="text-5xl font-bold">312</h2>
-          <p className="mt-4 text-xl">WhatsApp Clicks</p>
-        </div>
+            <h1
+              style={{
+                fontSize: "50px",
+                fontWeight: "bold"
+              }}
+            >
+              {item.value}
+            </h1>
+
+          </div>
+
+        ))}
 
       </div>
+
     </div>
+
   )
+
 }
