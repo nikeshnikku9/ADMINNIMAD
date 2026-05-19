@@ -1,48 +1,26 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function AdminLogin() {
+export default function AdminLoginPage() {
 
   const router = useRouter();
 
-  const [username, setUsername] =
-    useState("");
-
-  const [password, setPassword] =
-    useState("");
-
-  useEffect(() => {
-
-    const auth =
-      localStorage.getItem("nimad-admin");
-
-    if (auth === "loggedin") {
-
-      router.push("/admin/dashboard");
-
-    }
-
-  }, []);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleLogin = () => {
 
-    if (
-      username === "admin" &&
-      password === "nimad123"
-    ) {
+    if (username === "admin" && password === "1234") {
 
-      localStorage.setItem(
-        "nimad-admin",
-        "loggedin"
-      );
+      localStorage.setItem("nimad-admin-login", "true");
 
       router.push("/admin/dashboard");
 
     } else {
 
-      alert("Wrong Username or Password");
+      alert("Invalid Username or Password");
 
     }
 
@@ -50,76 +28,40 @@ export default function AdminLogin() {
 
   return (
 
-    <main
+    <div
       style={{
-
         minHeight: "100vh",
-
-        background:
-          "linear-gradient(rgba(0,0,0,.75), rgba(0,0,0,.88)), url('https://images.unsplash.com/photo-1601050690597-df0568f70950?q=80&w=1600&auto=format&fit=crop')",
-
-        backgroundSize: "cover",
-
-        backgroundPosition: "center",
-
         display: "flex",
-
         justifyContent: "center",
-
         alignItems: "center",
-
-        padding: "20px",
-
+        background:
+          "linear-gradient(to right, #2a120d, #5a2415)"
       }}
     >
 
       <div
         style={{
-
-          width: "100%",
-
-          maxWidth: "420px",
-
-          background:
-            "rgba(0,0,0,.45)",
-
-          backdropFilter: "blur(15px)",
-
-          border:
-            "1px solid rgba(255,215,0,.25)",
-
-          borderRadius: "28px",
-
-          padding: "35px",
-
-          color: "white",
-
-          boxShadow:
-            "0 0 40px rgba(255,174,0,.15)",
-
+          width: "420px",
+          background: "#1f1f1f",
+          padding: "40px",
+          borderRadius: "20px",
+          boxShadow: "0 0 25px rgba(255,215,0,0.3)",
+          border: "2px solid #f4c400"
         }}
       >
 
         <div
           style={{
             textAlign: "center",
-            marginBottom: "30px",
+            marginBottom: "30px"
           }}
         >
 
-          <div
-            style={{
-              fontSize: "60px",
-              marginBottom: "12px",
-            }}
-          >
-            🔐
-          </div>
-
           <h1
             style={{
-              fontSize: "38px",
-              color: "#f5c542",
+              color: "#f4c400",
+              fontSize: "42px",
+              marginBottom: "10px"
             }}
           >
             Admin Login
@@ -127,8 +69,8 @@ export default function AdminLogin() {
 
           <p
             style={{
-              marginTop: "10px",
-              color: "#ddd",
+              color: "white",
+              fontSize: "18px"
             }}
           >
             NIMAD ZAYKA SPICES
@@ -136,116 +78,95 @@ export default function AdminLogin() {
 
         </div>
 
-        <div
-          style={{
-            marginBottom: "20px",
-          }}
-        >
+        <div style={{ marginBottom: "20px" }}>
 
-          <label>
+          <label
+            style={{
+              color: "white",
+              display: "block",
+              marginBottom: "8px"
+            }}
+          >
             Username
           </label>
 
           <input
-            value={username}
-
-            onChange={(e)=>
-              setUsername(e.target.value)
-            }
-
+            type="text"
             placeholder="Enter username"
-
-            style={inputStyle}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            style={{
+              width: "100%",
+              padding: "14px",
+              borderRadius: "10px",
+              border: "1px solid #555",
+              fontSize: "16px"
+            }}
           />
 
         </div>
 
-        <div
-          style={{
-            marginBottom: "25px",
-          }}
-        >
+        <div style={{ marginBottom: "25px" }}>
 
-          <label>
+          <label
+            style={{
+              color: "white",
+              display: "block",
+              marginBottom: "8px"
+            }}
+          >
             Password
           </label>
 
           <input
             type="password"
-
-            value={password}
-
-            onChange={(e)=>
-              setPassword(e.target.value)
-            }
-
             placeholder="Enter password"
-
-            style={inputStyle}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            style={{
+              width: "100%",
+              padding: "14px",
+              borderRadius: "10px",
+              border: "1px solid #555",
+              fontSize: "16px"
+            }}
           />
 
         </div>
 
         <button
           onClick={handleLogin}
-
           style={{
-
             width: "100%",
-
-            padding: "16px",
-
+            padding: "15px",
+            borderRadius: "12px",
             border: "none",
-
-            borderRadius: "16px",
-
-            background:
-              "linear-gradient(135deg,#b8860b,#ffcc00)",
-
-            color: "black",
-
+            background: "#f4c400",
+            color: "#111",
             fontWeight: "bold",
-
             fontSize: "18px",
-
-            cursor: "pointer",
-
-            boxShadow:
-              "0 0 20px rgba(255,215,0,.25)",
-
+            cursor: "pointer"
           }}
         >
           Login to Dashboard
         </button>
 
+        <div
+          style={{
+            marginTop: "25px",
+            textAlign: "center",
+            color: "#bbb",
+            fontSize: "14px"
+          }}
+        >
+          Username: admin <br />
+          Password: 1234
+        </div>
+
       </div>
 
-    </main>
+    </div>
 
   );
 
 }
-
-const inputStyle = {
-
-  width: "100%",
-
-  padding: "15px",
-
-  marginTop: "8px",
-
-  borderRadius: "14px",
-
-  border:
-    "1px solid rgba(255,255,255,.15)",
-
-  background:
-    "rgba(255,255,255,.08)",
-
-  color: "white",
-
-  fontSize: "16px",
-
-  outline: "none",
-
-};
