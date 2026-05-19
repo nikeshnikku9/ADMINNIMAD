@@ -17,6 +17,7 @@
 
     "react-qr-code": "^2.0.12",
     "react-barcode": "^1.4.6",
+    "react-dropzone": "^14.2.3",
 
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
