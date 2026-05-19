@@ -16,16 +16,33 @@ export default function ProductsPage() {
 
   // ADD PRODUCT
   const addProduct = async () => {
+
+    const productName = prompt('Enter Product Name');
+
+    if (!productName) return;
+
+    const productPrice = prompt('Enter Product Price');
+
+    if (!productPrice) return;
+
+    const productBarcode = prompt('Enter Barcode Number');
+
+    if (!productBarcode) return;
+
+    const slug = productName
+      .toLowerCase()
+      .replaceAll(' ', '-');
+
     const res = await fetch('/api/products', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        name: 'Jeera Powder',
-        slug: 'jeera-powder',
-        price: 80,
-        barcode: '9201234567899',
+        name: productName,
+        slug: slug,
+        price: Number(productPrice),
+        barcode: productBarcode,
       }),
     });
 
