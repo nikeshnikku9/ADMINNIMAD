@@ -1,29 +1,20 @@
 {
   "name": "adminnimad",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
-
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "next start"
   },
-
   "dependencies": {
-
     "next": "14.2.3",
-
     "react": "^18",
-
     "react-dom": "^18",
-
-    "jsbarcode": "^3.11.6",
-
-    "jspdf": "^2.5.1",
-
-    "html2canvas": "^1.4.1"
-
+    "react-barcode": "^1.5.3",
+    "react-qr-code": "^2.0.12",
+    "lucide-react": "^0.453.0",
+    "sonner": "^1.5.0",
+    "class-variance-authority": "^0.7.0"
   }
-
 }
