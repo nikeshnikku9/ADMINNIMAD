@@ -1,6 +1,5 @@
 "use client"
 
-import Link from "next/link"
 import { useState } from "react"
 
 export default function ProductsPage() {
@@ -8,259 +7,215 @@ export default function ProductsPage() {
   const [products, setProducts] = useState([
 
     {
-      name: "Meat Masala",
-      size: "20g",
-      price: 45,
-      barcode: "920100000001"
-    },
-
-    {
-      name: "Meat Masala",
-      size: "50g",
-      price: 90,
-      barcode: "920100000002"
-    },
-
-    {
-      name: "Meat Masala",
-      size: "100g",
-      price: 160,
-      barcode: "920100000003"
-    },
-
-    {
-      name: "Garam Masala",
-      size: "50g",
-      price: 80,
-      barcode: "920100000004"
-    },
-
-    {
-      name: "Garam Masala",
-      size: "100g",
-      price: 150,
-      barcode: "920100000005"
-    },
-
-    {
-      name: "Shahi Paneer Masala",
-      size: "50g",
-      price: 85,
-      barcode: "920100000006"
-    },
-
-    {
-      name: "Shahi Paneer Masala",
-      size: "100g",
-      price: 160,
-      barcode: "920100000007"
-    },
-
-    {
-      name: "Dal Bati Masala",
-      size: "50g",
-      price: 70,
-      barcode: "920100000008"
-    },
-
-    {
-      name: "Dal Bati Masala",
-      size: "100g",
-      price: 140,
-      barcode: "920100000009"
-    },
-
-    {
-      name: "Khada Masala",
-      size: "50g",
-      price: 95,
-      barcode: "920100000010"
-    },
-
-    {
-      name: "Khada Masala",
-      size: "100g",
-      price: 180,
-      barcode: "920100000011"
-    },
-
-    {
-      name: "Chicken Masala",
-      size: "20g",
-      price: 40,
-      barcode: "920100000012"
-    },
-
-    {
-      name: "Chicken Masala",
-      size: "50g",
-      price: 85,
-      barcode: "920100000013"
-    },
-
-    {
-      name: "Chicken Masala",
-      size: "100g",
-      price: 155,
-      barcode: "920100000014"
-    },
-
-    {
-      name: "Haldi Powder",
-      size: "50g",
-      price: 25,
-      barcode: "920100000015"
-    },
-
-    {
+      id: 1,
       name: "Haldi Powder",
       size: "100g",
       price: 45,
+      stock: 120,
       barcode: "920100000016"
     },
 
     {
-      name: "Haldi Powder",
-      size: "200g",
-      price: 80,
-      barcode: "920100000017"
-    },
-
-    {
-      name: "Haldi Powder",
-      size: "500g",
-      price: 180,
-      barcode: "920100000018"
-    },
-
-    {
-      name: "Haldi Powder",
-      size: "1kg",
-      price: 320,
-      barcode: "920100000019"
-    },
-
-    {
-      name: "Mirchi Powder",
-      size: "50g",
-      price: 35,
-      barcode: "920100000020"
-    },
-
-    {
+      id: 2,
       name: "Mirchi Powder",
       size: "100g",
       price: 65,
+      stock: 80,
       barcode: "920100000021"
     },
 
     {
-      name: "Mirchi Powder",
-      size: "200g",
-      price: 120,
-      barcode: "920100000022"
-    },
-
-    {
-      name: "Mirchi Powder",
-      size: "500g",
-      price: 280,
-      barcode: "920100000023"
-    },
-
-    {
-      name: "Mirchi Powder",
-      size: "1kg",
-      price: 520,
-      barcode: "920100000024"
-    },
-
-    {
-      name: "Dhaniya Powder",
-      size: "50g",
-      price: 30,
-      barcode: "920100000025"
-    },
-
-    {
+      id: 3,
       name: "Dhaniya Powder",
       size: "100g",
       price: 55,
+      stock: 95,
       barcode: "920100000026"
     },
 
     {
-      name: "Dhaniya Powder",
-      size: "200g",
-      price: 100,
-      barcode: "920100000027"
-    },
-
-    {
-      name: "Dhaniya Powder",
-      size: "500g",
-      price: 220,
-      barcode: "920100000028"
-    },
-
-    {
-      name: "Dhaniya Powder",
-      size: "1kg",
-      price: 400,
-      barcode: "920100000029"
+      id: 4,
+      name: "Meat Masala",
+      size: "50g",
+      price: 90,
+      stock: 40,
+      barcode: "920100000002"
     }
 
   ])
+
+  // ADD PRODUCT
+  const addProduct = () => {
+
+    const name = prompt("Enter Product Name")
+    if (!name) return
+
+    const size = prompt("Enter Product Size")
+    if (!size) return
+
+    const price = prompt("Enter Product Price")
+    if (!price) return
+
+    const stock = prompt("Enter Stock Quantity")
+    if (!stock) return
+
+    const barcode = prompt("Enter Barcode Number")
+    if (!barcode) return
+
+    const newProduct = {
+
+      id: Date.now(),
+      name,
+      size,
+      price,
+      stock,
+      barcode
+
+    }
+
+    setProducts([...products, newProduct])
+
+  }
+
+  // EDIT PRODUCT
+  const editProduct = (id) => {
+
+    const updatedProducts = products.map((item) => {
+
+      if (item.id === id) {
+
+        const newPrice = prompt(
+          "Update Product Price",
+          item.price
+        )
+
+        const newStock = prompt(
+          "Update Stock",
+          item.stock
+        )
+
+        return {
+
+          ...item,
+          price: newPrice,
+          stock: newStock
+
+        }
+
+      }
+
+      return item
+
+    })
+
+    setProducts(updatedProducts)
+
+  }
+
+  // DELETE PRODUCT
+  const deleteProduct = (id) => {
+
+    const filteredProducts = products.filter(
+      item => item.id !== id
+    )
+
+    setProducts(filteredProducts)
+
+  }
 
   return (
 
     <div
       style={{
-        background: "#3b1308",
+        background: "#2b1308",
         minHeight: "100vh",
         padding: "40px",
         color: "white"
       }}
     >
 
+      {/* TOP HEADER */}
+
       <div
         style={{
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          marginBottom: "30px"
+          marginBottom: "40px",
+          flexWrap: "wrap",
+          gap: "20px"
         }}
       >
 
-        <h1
-          style={{
-            fontSize: "50px",
-            fontWeight: "bold"
-          }}
-        >
-          NIMAD ZAYKA PRODUCTS
-        </h1>
+        <div>
 
-        <Link href="/admin/products/new">
-
-          <button
+          <h1
             style={{
-              background: "#facc15",
-              color: "black",
-              padding: "15px 30px",
-              borderRadius: "12px",
-              fontWeight: "bold",
-              border: "none",
-              cursor: "pointer",
-              fontSize: "18px"
+              fontSize: "50px",
+              fontWeight: "bold"
             }}
           >
-            + Add Product
-          </button>
+            Product Management
+          </h1>
 
-        </Link>
+          <p
+            style={{
+              color: "#f5d0a9",
+              fontSize: "20px",
+              marginTop: "10px"
+            }}
+          >
+            MUKESH AND SONS MASALA UDHYOG
+          </p>
+
+        </div>
+
+        <button
+          onClick={addProduct}
+          style={addBtn}
+        >
+          + Add Product
+        </button>
 
       </div>
+
+      {/* COMPANY DETAILS */}
+
+      <div
+        style={{
+          background: "#5a2414",
+          padding: "25px",
+          borderRadius: "20px",
+          marginBottom: "35px",
+          border: "1px solid #8b5e3c"
+        }}
+      >
+
+        <h2
+          style={{
+            marginBottom: "15px",
+            color: "#facc15",
+            fontSize: "28px"
+          }}
+        >
+          Company Details
+        </h2>
+
+        <p style={detailText}>
+          GSTIN: 23MUCPS2534K1ZA
+        </p>
+
+        <p style={detailText}>
+          Address: Julwaniya Road Rajpur 451447
+        </p>
+
+        <p style={detailText}>
+          Contact: 6265996333
+        </p>
+
+      </div>
+
+      {/* PRODUCTS GRID */}
 
       <div
         style={{
@@ -270,12 +225,12 @@ export default function ProductsPage() {
         }}
       >
 
-        {products.map((item, index) => (
+        {products.map((item) => (
 
           <div
-            key={index}
+            key={item.id}
             style={{
-              background: "#5b2a1d",
+              background: "#5a2414",
               padding: "25px",
               borderRadius: "20px",
               border: "1px solid #8b5e3c"
@@ -284,7 +239,7 @@ export default function ProductsPage() {
 
             <h2
               style={{
-                fontSize: "35px",
+                fontSize: "34px",
                 fontWeight: "bold",
                 marginBottom: "15px"
               }}
@@ -292,34 +247,58 @@ export default function ProductsPage() {
               {item.name}
             </h2>
 
-            <p
-              style={{
-                fontSize: "22px",
-                marginBottom: "10px"
-              }}
-            >
+            <p style={productText}>
               Size: {item.size}
             </p>
 
             <p
               style={{
                 fontSize: "24px",
-                marginBottom: "10px",
                 color: "#facc15",
+                marginBottom: "10px",
                 fontWeight: "bold"
               }}
             >
               ₹ {item.price}
             </p>
 
+            <p style={productText}>
+              Stock: {item.stock}
+            </p>
+
             <p
               style={{
-                fontSize: "20px",
-                letterSpacing: "2px"
+                letterSpacing: "2px",
+                marginBottom: "20px",
+                color: "#f5d0a9"
               }}
             >
-              {item.barcode}
+              Barcode: {item.barcode}
             </p>
+
+            <div
+              style={{
+                display: "flex",
+                gap: "12px",
+                flexWrap: "wrap"
+              }}
+            >
+
+              <button
+                onClick={() => editProduct(item.id)}
+                style={btn}
+              >
+                Edit
+              </button>
+
+              <button
+                onClick={() => deleteProduct(item.id)}
+                style={deleteBtn}
+              >
+                Delete
+              </button>
+
+            </div>
 
           </div>
 
@@ -330,5 +309,57 @@ export default function ProductsPage() {
     </div>
 
   )
+
+}
+
+const addBtn = {
+
+  background: "#facc15",
+  color: "black",
+  border: "none",
+  padding: "15px 25px",
+  borderRadius: "12px",
+  fontWeight: "bold",
+  cursor: "pointer",
+  fontSize: "18px"
+
+}
+
+const btn = {
+
+  background: "#facc15",
+  color: "black",
+  border: "none",
+  padding: "12px 20px",
+  borderRadius: "10px",
+  cursor: "pointer",
+  fontWeight: "bold"
+
+}
+
+const deleteBtn = {
+
+  background: "#7f1d1d",
+  color: "white",
+  border: "none",
+  padding: "12px 20px",
+  borderRadius: "10px",
+  cursor: "pointer",
+  fontWeight: "bold"
+
+}
+
+const detailText = {
+
+  fontSize: "18px",
+  marginBottom: "10px",
+  color: "#f5d0a9"
+
+}
+
+const productText = {
+
+  fontSize: "20px",
+  marginBottom: "10px"
 
 }
