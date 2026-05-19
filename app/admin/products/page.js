@@ -1,224 +1,75 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
+import { useState } from "react";
 
 export default function ProductsPage() {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([
+    {
+      id: 1,
+      name: "HALDI POWDER",
+      price: 45,
+      barcode: "9206234110026",
+    },
+  ]);
 
-  // LOAD PRODUCTS
-  useEffect(() => {
-    fetch('/api/products')
-      .then((res) => res.json())
-      .then((data) => {
-        setProducts(Array.isArray(data) ? data : []);
-      });
-  }, []);
+  const addProduct = () => {
+    const newProduct = {
+      id: Date.now(),
+      name: "NEW PRODUCT",
+      price: 100,
+      barcode: Math.floor(Math.random() * 1000000000000).toString(),
+    };
 
-  // ADD PRODUCT
-  const addProduct = async () => {
-
-    const productName = prompt('Enter Product Name');
-
-    if (!productName) return;
-
-    const productPrice = prompt('Enter Product Price');
-
-    if (!productPrice) return;
-
-    const productBarcode = prompt('Enter Barcode Number');
-
-    if (!productBarcode) return;
-
-    const slug = productName
-      .toLowerCase()
-      .replaceAll(' ', '-');
-
-    const res = await fetch('/api/products', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: productName,
-        slug: slug,
-        price: Number(productPrice),
-        barcode: productBarcode,
-      }),
-    });
-
-    const data = await res.json();
-
-    setProducts((prev) => [...prev, data]);
-  };
-
-  // DELETE PRODUCT
-  const deleteProduct = (id) => {
-    const updated = products.filter((p) => p.id !== id);
-    setProducts(updated);
+    setProducts([...products, newProduct]);
   };
 
   return (
     <div
       style={{
-        minHeight: '100vh',
-        background: '#2b1810',
-        color: 'white',
-        padding: '40px',
+        background: "#3b241d",
+        minHeight: "100vh",
+        padding: "40px",
+        color: "white",
       }}
     >
-      {/* TOP BAR */}
-      <div
+      <h1 style={{ fontSize: "40px", marginBottom: "30px" }}>
+        NIMAD ZAYKA PRODUCTS
+      </h1>
+
+      <button
+        onClick={addProduct}
         style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          marginBottom: '40px',
+          background: "#facc15",
+          color: "black",
+          border: "none",
+          padding: "15px 25px",
+          borderRadius: "10px",
+          fontSize: "18px",
+          cursor: "pointer",
+          marginBottom: "30px",
         }}
       >
-        <div>
-          <h1
-            style={{
-              fontSize: '42px',
-              marginBottom: '10px',
-            }}
-          >
-            Product Catalog
-          </h1>
+        + Add Product
+      </button>
 
-          <p style={{ color: '#c9b09b' }}>
-            Manage your spice collection
-          </p>
-        </div>
-
-        <button
-          onClick={addProduct}
-          style={{
-            background: '#f0b400',
-            color: '#000',
-            border: 'none',
-            padding: '14px 22px',
-            borderRadius: '14px',
-            fontWeight: '700',
-            cursor: 'pointer',
-            fontSize: '16px',
-          }}
-        >
-          + Add Product
-        </button>
-      </div>
-
-      {/* PRODUCTS GRID */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))',
-          gap: '20px',
-        }}
-      >
-        {products.map((p) => (
+      <div style={{ display: "grid", gap: "20px" }}>
+        {products.map((item) => (
           <div
-            key={p.id}
+            key={item.id}
             style={{
-              background: '#3a2218',
-              border: '1px solid #5a3a2c',
-              borderRadius: '18px',
-              padding: '20px',
+              background: "#5a382d",
+              padding: "20px",
+              borderRadius: "15px",
             }}
           >
-            {/* IMAGE */}
-            <div
-              style={{
-                width: '80px',
-                height: '80px',
-                background: '#7a2e1f',
-                borderRadius: '16px',
-                marginBottom: '20px',
-              }}
-            />
+            <h2>{item.name}</h2>
 
-            {/* PRODUCT INFO */}
-            <h2
-              style={{
-                fontSize: '24px',
-                marginBottom: '5px',
-              }}
-            >
-              {p.name}
-            </h2>
+            <p>₹ {item.price}</p>
 
-            <p
-              style={{
-                color: '#c9b09b',
-                marginBottom: '10px',
-              }}
-            >
-              /product/{p.slug}
-            </p>
-
-            <div
-              style={{
-                color: '#facc15',
-                fontWeight: '700',
-                fontSize: '18px',
-              }}
-            >
-              ₹{p.price}
-            </div>
-
-            <div
-              style={{
-                marginTop: '8px',
-                color: '#e7d3b7',
-                fontSize: '14px',
-              }}
-            >
-              Barcode: {p.barcode}
-            </div>
-
-            {/* BUTTONS */}
-            <div
-              style={{
-                display: 'flex',
-                gap: '10px',
-                marginTop: '25px',
-                flexWrap: 'wrap',
-              }}
-            >
-              <button style={btn}>View</button>
-
-              <button style={btn}>Edit</button>
-
-              <button style={btn}>Copy</button>
-
-              <button
-                style={deleteBtn}
-                onClick={() => deleteProduct(p.id)}
-              >
-                Delete
-              </button>
-            </div>
+            <p>{item.barcode}</p>
           </div>
         ))}
       </div>
     </div>
   );
 }
-
-const btn = {
-  padding: '10px 16px',
-  borderRadius: '10px',
-  border: 'none',
-  background: '#f5f1e8',
-  cursor: 'pointer',
-  fontWeight: '600',
-};
-
-const deleteBtn = {
-  padding: '10px 16px',
-  borderRadius: '10px',
-  border: 'none',
-  background: '#7f1d1d',
-  color: 'white',
-  cursor: 'pointer',
-  fontWeight: '600',
-};
