@@ -1,218 +1,178 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Barcode from "react-barcode"
+import { useEffect, useState } from "react";
 
-export default function BarcodePage() {
+export default function BarcodeStudio() {
 
-  const products = [
-    "Meat Masala 20g",
-    "Meat Masala 50g",
-    "Meat Masala 100g",
-    "Garam Masala 50g",
-    "Garam Masala 100g",
-    "Shahi Paneer Masala 50g",
-    "Shahi Paneer Masala 100g",
-    "Dal Bati Masala 50g",
-    "Dal Bati Masala 100g",
-    "Khada Masala 50g",
-    "Khada Masala 100g",
-    "Chicken Masala 20g",
-    "Chicken Masala 50g",
-    "Chicken Masala 100g",
-    "Haldi Powder 50g",
-    "Haldi Powder 100g",
-    "Haldi Powder 200g",
-    "Haldi Powder 500g",
-    "Haldi Powder 1kg",
-    "Mirchi Powder 50g",
-    "Mirchi Powder 100g",
-    "Mirchi Powder 200g",
-    "Mirchi Powder 500g",
-    "Mirchi Powder 1kg",
-    "Dhaniya Powder 50g",
-    "Dhaniya Powder 100g",
-    "Dhaniya Powder 200g",
-    "Dhaniya Powder 500g",
-    "Dhaniya Powder 1kg"
-  ]
+  const [products, setProducts] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [barcode, setBarcode] = useState("");
 
-  const [barcodeValue, setBarcodeValue] = useState("920100000001")
-  const [selectedProduct, setSelectedProduct] = useState(products[0])
+  useEffect(() => {
+    const savedProducts = localStorage.getItem("nimad-products");
+
+    if (savedProducts) {
+      const parsed = JSON.parse(savedProducts);
+      setProducts(parsed);
+
+      if (parsed.length > 0) {
+        setSelectedProduct(parsed[0]);
+        setBarcode(parsed[0].barcode);
+      }
+    }
+  }, []);
+
+  const handleProductChange = (e) => {
+    const product = products.find(
+      (p) => p.barcode === e.target.value
+    );
+
+    setSelectedProduct(product);
+    setBarcode(product.barcode);
+  };
 
   return (
-
     <div
       style={{
-        background: "#3b1308",
         minHeight: "100vh",
-        padding: "40px",
-        color: "white"
+        background: "#3b170b",
+        color: "white",
+        padding: "30px"
       }}
     >
-
       <h1
         style={{
-          fontSize: "50px",
-          marginBottom: "10px",
-          fontWeight: "bold"
+          fontSize: "42px",
+          fontWeight: "bold",
+          marginBottom: "30px"
         }}
       >
         Barcode Studio
       </h1>
 
-      <p
-        style={{
-          color: "#f5d0a9",
-          marginBottom: "40px",
-          fontSize: "18px"
-        }}
-      >
-        Generate Code128 / EAN13 barcodes with GS1-style workflow
-      </p>
-
       <div
         style={{
-          background: "#5b2a1d",
-          padding: "30px",
+          background: "#5b2c1d",
+          padding: "25px",
           borderRadius: "20px",
-          maxWidth: "700px"
+          marginBottom: "30px"
         }}
       >
-
-        <div
+        <h2
           style={{
-            display: "flex",
-            gap: "15px",
-            flexWrap: "wrap",
-            marginBottom: "25px"
+            fontSize: "24px",
+            marginBottom: "20px"
           }}
         >
+          Generate Barcode
+        </h2>
 
-          <input
-            type="text"
-            value={barcodeValue}
-            onChange={(e)=>setBarcodeValue(e.target.value)}
-            placeholder="Enter Barcode Number"
-            style={{
-              padding: "15px",
-              borderRadius: "10px",
-              border: "none",
-              width: "250px",
-              fontSize: "16px"
-            }}
-          />
-
-          <select
-            value={selectedProduct}
-            onChange={(e)=>setSelectedProduct(e.target.value)}
-            style={{
-              padding: "15px",
-              borderRadius: "10px",
-              border: "none",
-              width: "250px",
-              fontSize: "16px"
-            }}
-          >
-
-            {products.map((item,index)=>(
-
-              <option key={index}>
-                {item}
-              </option>
-
-            ))}
-
-          </select>
-
-        </div>
-
-        <div
+        <select
+          onChange={handleProductChange}
+          value={barcode}
           style={{
-            background: "white",
-            padding: "30px",
-            borderRadius: "20px",
-            textAlign: "center"
+            width: "100%",
+            padding: "14px",
+            borderRadius: "10px",
+            marginBottom: "20px",
+            fontSize: "18px"
           }}
         >
+          {products.map((product) => (
+            <option
+              key={product.barcode}
+              value={product.barcode}
+            >
+              {product.name} - {product.size}
+            </option>
+          ))}
+        </select>
 
-          <Barcode
-            value={barcodeValue}
-            format="EAN13"
-            width={2}
-            height={120}
-          />
-
-          <h2
+        {selectedProduct && (
+          <div
             style={{
-              color: "black",
-              marginTop: "20px",
-              fontSize: "24px"
+              background: "#3b170b",
+              padding: "25px",
+              borderRadius: "20px"
             }}
           >
-            {selectedProduct}
-          </h2>
 
-        </div>
+            <div
+              style={{
+                background: "white",
+                padding: "20px",
+                borderRadius: "12px",
+                color: "black",
+                marginBottom: "20px"
+              }}
+            >
+              <h2
+                style={{
+                  fontSize: "30px",
+                  fontWeight: "bold",
+                  marginBottom: "15px"
+                }}
+              >
+                {selectedProduct.name}
+              </h2>
 
-        <div
-          style={{
-            display: "flex",
-            gap: "15px",
-            marginTop: "25px",
-            flexWrap: "wrap"
-          }}
-        >
+              <p><b>Size:</b> {selectedProduct.size}</p>
 
-          <button
-            style={{
-              background: "#facc15",
-              color: "black",
-              border: "none",
-              padding: "14px 25px",
-              borderRadius: "10px",
-              fontWeight: "bold",
-              cursor: "pointer"
-            }}
-          >
-            PNG
-          </button>
+              <p><b>MRP:</b> ₹{selectedProduct.price}</p>
 
-          <button
-            style={{
-              background: "#facc15",
-              color: "black",
-              border: "none",
-              padding: "14px 25px",
-              borderRadius: "10px",
-              fontWeight: "bold",
-              cursor: "pointer"
-            }}
-          >
-            SVG
-          </button>
+              <p><b>Stock:</b> {selectedProduct.stock}</p>
 
-          <button
-            onClick={()=>window.print()}
-            style={{
-              background: "#facc15",
-              color: "black",
-              border: "none",
-              padding: "14px 25px",
-              borderRadius: "10px",
-              fontWeight: "bold",
-              cursor: "pointer"
-            }}
-          >
-            Print
-          </button>
+              <p><b>SKU:</b> NZ-{selectedProduct.id}</p>
 
-        </div>
+              <p><b>Category:</b> Spices</p>
 
+              <p><b>GST:</b> 5%</p>
+
+              <p><b>Inventory Status:</b> In Stock</p>
+
+              <p><b>Barcode:</b> {selectedProduct.barcode}</p>
+
+              <hr style={{ margin: "20px 0" }} />
+
+              <h3>MUKESH AND SONS MASALA UDHYOG</h3>
+
+              <p>Julwaniya Road Rajpur 451447</p>
+
+              <p>GSTIN: 23MUCPS2534K1ZA</p>
+
+              <p>Contact: 6265996333</p>
+
+            </div>
+
+            <div
+              style={{
+                background: "white",
+                padding: "25px",
+                borderRadius: "10px",
+                textAlign: "center"
+              }}
+            >
+              <svg
+                id="barcode"
+                width="100%"
+                height="120"
+              ></svg>
+
+              <div
+                style={{
+                  marginTop: "15px",
+                  fontSize: "22px",
+                  color: "black",
+                  letterSpacing: "4px"
+                }}
+              >
+                {selectedProduct.barcode}
+              </div>
+            </div>
+
+          </div>
+        )}
       </div>
-
     </div>
-
-  )
-
+  );
 }
