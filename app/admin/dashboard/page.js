@@ -1,104 +1,202 @@
-"use client"
+"use client";
 
-export default function DashboardPage() {
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
-  const stats = [
-    {
-      title: "Total Products",
-      value: 29
-    },
-    {
-      title: "QR Codes",
-      value: 120
-    },
-    {
-      title: "Barcodes",
-      value: 210
-    },
-    {
-      title: "Enquiries",
-      value: 0
+export default function Dashboard() {
+
+  const router = useRouter();
+
+  useEffect(() => {
+
+    const auth =
+      localStorage.getItem("nimad-admin");
+
+    if (auth !== "loggedin") {
+
+      router.push("/admin");
+
     }
-  ]
+
+  }, []);
+
+  const logout = () => {
+
+    localStorage.removeItem(
+      "nimad-admin"
+    );
+
+    router.push("/admin");
+
+  };
 
   return (
 
-    <div
+    <main
       style={{
-        background: "#3b1308",
+
         minHeight: "100vh",
-        padding: "40px",
-        color: "white"
+
+        background:
+          "linear-gradient(#2b0f08,#3b170b)",
+
+        padding: "30px",
+
+        color: "white",
+
       }}
     >
 
-      <h1
-        style={{
-          fontSize: "55px",
-          fontWeight: "bold",
-          marginBottom: "10px"
-        }}
-      >
-        Welcome Back
-      </h1>
-
-      <p
-        style={{
-          fontSize: "22px",
-          color: "#f5d0a9",
-          marginBottom: "40px"
-        }}
-      >
-        Nimad ZAYKA Admin Dashboard
-      </p>
-
       <div
         style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit,minmax(250px,1fr))",
-          gap: "25px"
+
+          display: "flex",
+
+          justifyContent: "space-between",
+
+          alignItems: "center",
+
+          marginBottom: "35px",
+
         }}
       >
 
-        {stats.map((item, index) => (
+        <div>
 
-          <div
-            key={index}
+          <h1
             style={{
-              background: "#5b2a1d",
-              padding: "30px",
-              borderRadius: "20px",
-              border: "1px solid #8b5e3c"
+              fontSize: "40px",
             }}
           >
+            Admin Dashboard
+          </h1>
 
-            <h2
-              style={{
-                fontSize: "20px",
-                color: "#facc15",
-                marginBottom: "15px"
-              }}
-            >
-              {item.title}
-            </h2>
+          <p
+            style={{
+              marginTop: "8px",
+              color: "#f5c542",
+            }}
+          >
+            NIMAD ZAYKA SPICES
+          </p>
 
-            <h1
-              style={{
-                fontSize: "50px",
-                fontWeight: "bold"
-              }}
-            >
-              {item.value}
-            </h1>
+        </div>
 
-          </div>
+        <button
+          onClick={logout}
 
-        ))}
+          style={{
+
+            padding: "12px 22px",
+
+            border: "none",
+
+            borderRadius: "12px",
+
+            background: "#c40000",
+
+            color: "white",
+
+            fontWeight: "bold",
+
+            cursor: "pointer",
+
+          }}
+        >
+          Logout
+        </button>
 
       </div>
 
-    </div>
+      <div
+        style={{
 
-  )
+          display: "grid",
+
+          gridTemplateColumns:
+            "repeat(auto-fit,minmax(250px,1fr))",
+
+          gap: "20px",
+
+        }}
+      >
+
+        <Card
+          title="Products"
+          link="/admin/products"
+        />
+
+        <Card
+          title="Barcode Studio"
+          link="/admin/barcode"
+        />
+
+        <Card
+          title="QR Generator"
+          link="/admin/qrcode"
+        />
+
+        <Card
+          title="Enquiries"
+          link="/admin/enquiries"
+        />
+
+      </div>
+
+    </main>
+
+  );
+
+}
+
+function Card({ title, link }) {
+
+  return (
+
+    <Link
+      href={link}
+
+      style={{
+        textDecoration: "none",
+      }}
+    >
+
+      <div
+        style={{
+
+          background:
+            "rgba(255,255,255,.06)",
+
+          border:
+            "1px solid rgba(255,255,255,.08)",
+
+          borderRadius: "22px",
+
+          padding: "30px",
+
+          color: "white",
+
+          backdropFilter: "blur(10px)",
+
+          boxShadow:
+            "0 0 25px rgba(0,0,0,.25)",
+
+        }}
+      >
+
+        <h2
+          style={{
+            fontSize: "28px",
+          }}
+        >
+          {title}
+        </h2>
+
+      </div>
+
+    </Link>
+
+  );
 
 }
