@@ -19,6 +19,7 @@ export default function AdminLayout({ children }) {
       setIsLoggedIn(true);
     } else {
 
+      // LOGIN PAGE ALLOW
       if (pathname !== "/admin") {
         router.push("/admin");
       }
@@ -27,19 +28,26 @@ export default function AdminLayout({ children }) {
 
   }, [pathname, router]);
 
+  // LOGOUT
   const logout = () => {
+
     localStorage.removeItem("nimad-admin-login");
+
     router.push("/admin");
+
   };
 
+  // ONLY LOGIN PAGE
   if (pathname === "/admin") {
     return children;
   }
 
+  // BLOCK DIRECT ACCESS
   if (!isLoggedIn) {
     return null;
   }
 
+  // ADMIN PANEL
   return (
 
     <div
@@ -50,9 +58,10 @@ export default function AdminLayout({ children }) {
       }}
     >
 
+      {/* SIDEBAR */}
       <div
         style={{
-          width: "260px",
+          width: "250px",
           background: "#f7f2ea",
           padding: "20px",
           borderRight: "4px solid #5a2415"
@@ -62,32 +71,52 @@ export default function AdminLayout({ children }) {
         <h1
           style={{
             color: "#6b1d1d",
-            fontSize: "42px",
+            fontSize: "36px",
             fontWeight: "bold",
             marginBottom: "30px"
           }}
         >
-          ADMIN PORTAL
+          ADMIN
         </h1>
 
-        <SidebarButton href="/admin/dashboard" text="Dashboard" />
-        <SidebarButton href="/admin/products" text="Products" />
-        <SidebarButton href="/admin/qrcode" text="QR Generator" />
-        <SidebarButton href="/admin/barcode" text="Barcode Studio" />
-        <SidebarButton href="/admin/enquiries" text="Enquiries" />
+        <SidebarButton
+          href="/admin/dashboard"
+          text="Dashboard"
+        />
+
+        <SidebarButton
+          href="/admin/products"
+          text="Products"
+        />
+
+        <SidebarButton
+          href="/admin/qrcode"
+          text="QR Generator"
+        />
+
+        <SidebarButton
+          href="/admin/barcode"
+          text="Barcode Studio"
+        />
+
+        <SidebarButton
+          href="/admin/enquiries"
+          text="Enquiries"
+        />
 
         <button
           onClick={logout}
           style={{
-            marginTop: "30px",
             width: "100%",
-            padding: "15px",
-            borderRadius: "12px",
+            padding: "16px",
+            marginTop: "25px",
             border: "none",
+            borderRadius: "12px",
             background: "#8b0000",
-            color: "white",
+            color: "#fff",
             fontWeight: "bold",
-            cursor: "pointer"
+            cursor: "pointer",
+            fontSize: "16px"
           }}
         >
           Logout
@@ -95,6 +124,7 @@ export default function AdminLayout({ children }) {
 
       </div>
 
+      {/* MAIN CONTENT */}
       <div
         style={{
           flex: 1,
@@ -114,18 +144,23 @@ function SidebarButton({ href, text }) {
 
   return (
 
-    <Link href={href} style={{ textDecoration: "none" }}>
+    <Link
+      href={href}
+      style={{
+        textDecoration: "none"
+      }}
+    >
 
       <div
         style={{
           background: "#f4c400",
           color: "#222",
-          padding: "18px",
+          padding: "16px",
           borderRadius: "14px",
-          marginBottom: "18px",
-          fontWeight: "bold",
-          fontSize: "20px",
+          marginBottom: "16px",
           textAlign: "center",
+          fontWeight: "bold",
+          fontSize: "18px",
           boxShadow: "0 4px 10px rgba(0,0,0,0.2)"
         }}
       >
