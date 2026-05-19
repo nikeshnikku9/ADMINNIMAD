@@ -1,43 +1,218 @@
+"use client"
+
+import { useState } from "react"
+import Barcode from "react-barcode"
+
 export default function BarcodePage() {
 
-  return (
-    <div className="min-h-screen bg-[#3b1408] text-white p-10">
+  const products = [
+    "Meat Masala 20g",
+    "Meat Masala 50g",
+    "Meat Masala 100g",
+    "Garam Masala 50g",
+    "Garam Masala 100g",
+    "Shahi Paneer Masala 50g",
+    "Shahi Paneer Masala 100g",
+    "Dal Bati Masala 50g",
+    "Dal Bati Masala 100g",
+    "Khada Masala 50g",
+    "Khada Masala 100g",
+    "Chicken Masala 20g",
+    "Chicken Masala 50g",
+    "Chicken Masala 100g",
+    "Haldi Powder 50g",
+    "Haldi Powder 100g",
+    "Haldi Powder 200g",
+    "Haldi Powder 500g",
+    "Haldi Powder 1kg",
+    "Mirchi Powder 50g",
+    "Mirchi Powder 100g",
+    "Mirchi Powder 200g",
+    "Mirchi Powder 500g",
+    "Mirchi Powder 1kg",
+    "Dhaniya Powder 50g",
+    "Dhaniya Powder 100g",
+    "Dhaniya Powder 200g",
+    "Dhaniya Powder 500g",
+    "Dhaniya Powder 1kg"
+  ]
 
-      <h1 className="text-5xl font-bold mb-10">
+  const [barcodeValue, setBarcodeValue] = useState("920100000001")
+  const [selectedProduct, setSelectedProduct] = useState(products[0])
+
+  return (
+
+    <div
+      style={{
+        background: "#3b1308",
+        minHeight: "100vh",
+        padding: "40px",
+        color: "white"
+      }}
+    >
+
+      <h1
+        style={{
+          fontSize: "50px",
+          marginBottom: "10px",
+          fontWeight: "bold"
+        }}
+      >
         Barcode Studio
       </h1>
 
-      <div className="bg-[#5a2414] p-10 rounded-3xl max-w-4xl">
+      <p
+        style={{
+          color: "#f5d0a9",
+          marginBottom: "40px",
+          fontSize: "18px"
+        }}
+      >
+        Generate Code128 / EAN13 barcodes with GS1-style workflow
+      </p>
 
-        <input
-          placeholder="Enter Barcode Number"
-          className="w-full p-5 rounded-xl text-black text-xl mb-6"
-        />
+      <div
+        style={{
+          background: "#5b2a1d",
+          padding: "30px",
+          borderRadius: "20px",
+          maxWidth: "700px"
+        }}
+      >
 
-        <select className="w-full p-5 rounded-xl text-black text-xl mb-6">
+        <div
+          style={{
+            display: "flex",
+            gap: "15px",
+            flexWrap: "wrap",
+            marginBottom: "25px"
+          }}
+        >
 
-          <option>
-            HALDI POWDER
-          </option>
+          <input
+            type="text"
+            value={barcodeValue}
+            onChange={(e)=>setBarcodeValue(e.target.value)}
+            placeholder="Enter Barcode Number"
+            style={{
+              padding: "15px",
+              borderRadius: "10px",
+              border: "none",
+              width: "250px",
+              fontSize: "16px"
+            }}
+          />
 
-          <option>
-            LAL MIRCH
-          </option>
+          <select
+            value={selectedProduct}
+            onChange={(e)=>setSelectedProduct(e.target.value)}
+            style={{
+              padding: "15px",
+              borderRadius: "10px",
+              border: "none",
+              width: "250px",
+              fontSize: "16px"
+            }}
+          >
 
-        </select>
+            {products.map((item,index)=>(
 
-        <button className="bg-yellow-400 text-black px-8 py-4 rounded-xl font-bold text-xl">
-          Generate Barcode
-        </button>
+              <option key={index}>
+                {item}
+              </option>
 
-        <div className="bg-white mt-10 p-10 rounded-2xl">
+            ))}
 
-          <div className="h-40 bg-black"></div>
+          </select>
+
+        </div>
+
+        <div
+          style={{
+            background: "white",
+            padding: "30px",
+            borderRadius: "20px",
+            textAlign: "center"
+          }}
+        >
+
+          <Barcode
+            value={barcodeValue}
+            format="EAN13"
+            width={2}
+            height={120}
+          />
+
+          <h2
+            style={{
+              color: "black",
+              marginTop: "20px",
+              fontSize: "24px"
+            }}
+          >
+            {selectedProduct}
+          </h2>
+
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            gap: "15px",
+            marginTop: "25px",
+            flexWrap: "wrap"
+          }}
+        >
+
+          <button
+            style={{
+              background: "#facc15",
+              color: "black",
+              border: "none",
+              padding: "14px 25px",
+              borderRadius: "10px",
+              fontWeight: "bold",
+              cursor: "pointer"
+            }}
+          >
+            PNG
+          </button>
+
+          <button
+            style={{
+              background: "#facc15",
+              color: "black",
+              border: "none",
+              padding: "14px 25px",
+              borderRadius: "10px",
+              fontWeight: "bold",
+              cursor: "pointer"
+            }}
+          >
+            SVG
+          </button>
+
+          <button
+            onClick={()=>window.print()}
+            style={{
+              background: "#facc15",
+              color: "black",
+              border: "none",
+              padding: "14px 25px",
+              borderRadius: "10px",
+              fontWeight: "bold",
+              cursor: "pointer"
+            }}
+          >
+            Print
+          </button>
 
         </div>
 
       </div>
 
     </div>
+
   )
+
 }
