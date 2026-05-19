@@ -1,29 +1,122 @@
+"use client"
+
+import { useState } from "react"
+import QRCode from "react-qr-code"
+
 export default function QRPage() {
 
-  return (
-    <div className="min-h-screen bg-[#3b1408] text-white p-10">
+  const [url, setUrl] = useState("https://nimadzayka.com")
+  const [qrColor, setQrColor] = useState("#7c2d12")
+  const [bgColor, setBgColor] = useState("#ffffff")
 
-      <h1 className="text-5xl font-bold mb-10">
+  return (
+
+    <div
+      style={{
+        background: "#3b1308",
+        minHeight: "100vh",
+        padding: "40px",
+        color: "white"
+      }}
+    >
+
+      <h1
+        style={{
+          fontSize: "50px",
+          marginBottom: "10px"
+        }}
+      >
         QR Generator
       </h1>
 
-      <div className="bg-[#5a2414] p-10 rounded-3xl max-w-3xl">
+      <p
+        style={{
+          color: "#f5d0a9",
+          marginBottom: "40px"
+        }}
+      >
+        Generate beautiful QR codes for products, WhatsApp & more
+      </p>
 
-        <input
-          placeholder="Enter Website URL"
-          className="w-full p-5 rounded-xl text-black text-xl mb-6"
-        />
+      <div
+        style={{
+          display: "flex",
+          gap: "40px",
+          flexWrap: "wrap"
+        }}
+      >
 
-        <button className="bg-yellow-400 text-black px-8 py-4 rounded-xl font-bold text-xl">
-          Generate QR
-        </button>
+        <div
+          style={{
+            background: "#5b2a1d",
+            padding: "30px",
+            borderRadius: "20px",
+            width: "400px"
+          }}
+        >
 
-        <div className="bg-white mt-10 p-10 rounded-2xl flex justify-center">
-          <div className="w-72 h-72 bg-black"></div>
+          <input
+            value={url}
+            onChange={(e)=>setUrl(e.target.value)}
+            placeholder="Enter URL"
+            style={{
+              width: "100%",
+              padding: "15px",
+              marginBottom: "20px",
+              borderRadius: "10px",
+              border: "none",
+              fontSize: "18px"
+            }}
+          />
+
+          <label>QR Color</label>
+
+          <input
+            type="color"
+            value={qrColor}
+            onChange={(e)=>setQrColor(e.target.value)}
+            style={{
+              width: "100%",
+              height: "50px",
+              marginBottom: "20px"
+            }}
+          />
+
+          <label>Background Color</label>
+
+          <input
+            type="color"
+            value={bgColor}
+            onChange={(e)=>setBgColor(e.target.value)}
+            style={{
+              width: "100%",
+              height: "50px"
+            }}
+          />
+
+        </div>
+
+        <div
+          style={{
+            background: "white",
+            padding: "30px",
+            borderRadius: "20px"
+          }}
+        >
+
+          <QRCode
+            value={url}
+            size={300}
+            fgColor={qrColor}
+            bgColor={bgColor}
+          />
+
         </div>
 
       </div>
 
     </div>
+
   )
+
 }
