@@ -1,73 +1,25 @@
-"use client";
+export const metadata = {
+  title: "Nimad Zayka Spices",
+  description: "Premium Indian Spices"
+};
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import "./globals.css";
 
-export default function AdminLayout({ children }) {
-
-  const pathname = usePathname();
-
-  // LOGIN PAGE PAR SIDEBAR HIDE
-  if (pathname === "/admin") {
-    return children;
-  }
-
+export default function RootLayout({
+  children,
+}) {
   return (
-
-    <div
-      style={{
-        display: "flex",
-        minHeight: "100vh",
-        background: "#2a120d"
-      }}
-    >
-
-      {/* SIDEBAR */}
-      <div
+    <html lang="en">
+      <body
         style={{
-          width: "250px",
-          background: "#f7f2ea",
-          padding: "20px",
-          borderRight: "4px solid #5a2415"
+          margin: 0,
+          padding: 0,
+          fontFamily: "Arial, sans-serif",
+          background: "#1a0d08"
         }}
       >
-
-        <h1
-          style={{
-            color: "#6b1d1d",
-            fontSize: "36px",
-            fontWeight: "bold",
-            marginBottom: "30px"
-          }}
-        >
-          ADMIN
-        </h1>
-
-        <SidebarButton
-          href="/admin/dashboard"
-          text="Dashboard"
-        />
-
-        <SidebarButton
-          href="/admin/products"
-          text="Products"
-        />
-
-        <SidebarButton
-          href="/admin/qrcode"
-          text="QR Generator"
-        />
-
-        <SidebarButton
-          href="/admin/barcode"
-          text="Barcode Studio"
-        />
-
-        <SidebarButton
-          href="/admin/enquiries"
-          text="Enquiries"
-        />
-
-      </div>
-
-      {/* MAIN
+        {children}
+      </body>
+    </html>
+  );
+}
