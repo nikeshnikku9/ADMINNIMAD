@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import BarcodeScanner from "react-qr-barcode-scanner";
 
 export default function POSPage() {
 
@@ -10,40 +9,29 @@ export default function POSPage() {
     {
       barcode: "920100000016",
       name: "Haldi Powder 100g",
-      price: 45,
-      gst: 5
+      price: 45
     },
 
     {
       barcode: "920100000021",
       name: "Mirchi Powder 100g",
-      price: 65,
-      gst: 5
-    },
-
-    {
-      barcode: "920100000026",
-      name: "Dhaniya Powder 100g",
-      price: 55,
-      gst: 5
-    },
-
-    {
-      barcode: "920100000003",
-      name: "Meat Masala 100g",
-      price: 160,
-      gst: 12
+      price: 65
     }
 
   ];
 
-  const [cart,setCart] = useState([]);
+  const [barcode, setBarcode] =
+    useState("");
 
-  const addProduct = (code) => {
+  const [cart, setCart] =
+    useState([]);
+
+  const addProduct = () => {
 
     const found =
       products.find(
-        p => p.barcode === code
+        item =>
+          item.barcode === barcode
       );
 
     if (!found) {
@@ -54,5 +42,143 @@ export default function POSPage() {
 
     }
 
-    const existing =
-      cart
+    setCart([
+      ...cart,
+      found
+    ]);
+
+    setBarcode("");
+
+  };
+
+  const total =
+    cart.reduce(
+
+      (sum,item)=>
+
+        sum + item.price,
+
+      0
+
+    );
+
+  return (
+
+    <div
+      style={{
+        minHeight: "100vh",
+        background: "#2a120d",
+        padding: "30px",
+        color: "white"
+      }}
+    >
+
+      <h1
+        style={{
+          fontSize: "40px",
+          color: "#f4c400",
+          marginBottom: "30px"
+        }}
+      >
+        POS Billing
+      </h1>
+
+      <div
+        style={{
+          display: "flex",
+          gap: "15px",
+          marginBottom: "30px"
+        }}
+      >
+
+        <input
+          value={barcode}
+          onChange={(e)=>
+            setBarcode(
+              e.target.value
+            )
+          }
+          placeholder="Enter Barcode"
+          style={{
+            flex: 1,
+            padding: "16px",
+            borderRadius: "10px",
+            border: "none",
+            fontSize: "18px"
+          }}
+        />
+
+        <button
+          onClick={addProduct}
+          style={{
+            background: "#f4c400",
+            border: "none",
+            padding: "16px 30px",
+            borderRadius: "10px",
+            fontWeight: "bold"
+          }}
+        >
+          Add
+        </button>
+
+      </div>
+
+      <div
+        style={{
+          background: "#4a1d12",
+          padding: "20px",
+          borderRadius: "15px"
+        }}
+      >
+
+        {cart.map((item,index)=>(
+
+          <div
+            key={index}
+            style={{
+              display: "flex",
+              justifyContent:
+                "space-between",
+              marginBottom: "15px",
+              borderBottom:
+                "1px solid rgba(255,255,255,0.1)",
+              paddingBottom: "10px"
+            }}
+          >
+
+            <div>
+
+              <h3>
+                {item.name}
+              </h3>
+
+              <p>
+                {item.barcode}
+              </p>
+
+            </div>
+
+            <h3>
+              ₹{item.price}
+            </h3>
+
+          </div>
+
+        ))}
+
+        <h2
+          style={{
+            marginTop: "20px",
+            color: "#f4c400"
+          }}
+        >
+          Total: ₹{total}
+        </h2>
+
+      </div>
+
+    </div>
+
+  );
+
+}
