@@ -4,8 +4,10 @@
   box-sizing: border-box;
 }
 
+html,
 body {
-  background: #1a120b;
-  color: white;
+  width: 100%;
+  min-height: 100%;
   font-family: Arial, sans-serif;
+  background: #1a0d08;
 }
