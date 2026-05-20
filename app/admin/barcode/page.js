@@ -1,17 +1,18 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
-import html2canvas from "html2canvas";
 
 const Barcode = dynamic(
   () => import("react-barcode"),
-  { ssr: false }
+  {
+    ssr: false
+  }
 );
 
 export default function BarcodeStudio() {
 
-  // ALL PRODUCTS
+  // PRODUCTS
 
   const defaultProducts = [
 
@@ -182,7 +183,7 @@ export default function BarcodeStudio() {
       category: "Premium Box Packaging"
     },
 
-    // HALDI POWDER
+    // HALDI
 
     {
       id: 16,
@@ -239,7 +240,7 @@ export default function BarcodeStudio() {
       category: "Standard Plastic Packaging"
     },
 
-    // MIRCHI POWDER
+    // MIRCHI
 
     {
       id: 21,
@@ -294,120 +295,6 @@ export default function BarcodeStudio() {
       stock: 70,
       gst: "5%",
       category: "Standard Plastic Packaging"
-    },
-
-    // DHANIYA POWDER
-
-    {
-      id: 26,
-      name: "DHANIYA POWDER 50G",
-      sku: "NZ-DP-50",
-      barcode: "920100000026",
-      mrp: 20,
-      stock: 190,
-      gst: "5%",
-      category: "Standard Plastic Packaging"
-    },
-
-    {
-      id: 27,
-      name: "DHANIYA POWDER 100G",
-      sku: "NZ-DP-100",
-      barcode: "920100000027",
-      mrp: 40,
-      stock: 170,
-      gst: "5%",
-      category: "Standard Plastic Packaging"
-    },
-
-    {
-      id: 28,
-      name: "DHANIYA POWDER 200G",
-      sku: "NZ-DP-200",
-      barcode: "920100000028",
-      mrp: 75,
-      stock: 150,
-      gst: "5%",
-      category: "Standard Plastic Packaging"
-    },
-
-    {
-      id: 29,
-      name: "DHANIYA POWDER 500G",
-      sku: "NZ-DP-500",
-      barcode: "920100000029",
-      mrp: 160,
-      stock: 100,
-      gst: "5%",
-      category: "Standard Plastic Packaging"
-    },
-
-    {
-      id: 30,
-      name: "DHANIYA POWDER 1KG",
-      sku: "NZ-DP-1KG",
-      barcode: "920100000030",
-      mrp: 300,
-      stock: 80,
-      gst: "5%",
-      category: "Standard Plastic Packaging"
-    },
-
-    // GARAM MASALA STANDARD
-
-    {
-      id: 31,
-      name: "GARAM MASALA 50G",
-      sku: "NZ-SGM-50",
-      barcode: "920100000031",
-      mrp: 45,
-      stock: 150,
-      gst: "5%",
-      category: "Standard Plastic Packaging"
-    },
-
-    {
-      id: 32,
-      name: "GARAM MASALA 100G",
-      sku: "NZ-SGM-100",
-      barcode: "920100000032",
-      mrp: 85,
-      stock: 130,
-      gst: "5%",
-      category: "Standard Plastic Packaging"
-    },
-
-    {
-      id: 33,
-      name: "GARAM MASALA 200G",
-      sku: "NZ-SGM-200",
-      barcode: "920100000033",
-      mrp: 160,
-      stock: 100,
-      gst: "5%",
-      category: "Standard Plastic Packaging"
-    },
-
-    {
-      id: 34,
-      name: "GARAM MASALA 500G",
-      sku: "NZ-SGM-500",
-      barcode: "920100000034",
-      mrp: 360,
-      stock: 70,
-      gst: "5%",
-      category: "Standard Plastic Packaging"
-    },
-
-    {
-      id: 35,
-      name: "GARAM MASALA 1KG",
-      sku: "NZ-SGM-1KG",
-      barcode: "920100000035",
-      mrp: 680,
-      stock: 50,
-      gst: "5%",
-      category: "Standard Plastic Packaging"
     }
 
   ];
@@ -418,9 +305,7 @@ export default function BarcodeStudio() {
   const [selectedId, setSelectedId] =
     useState(1);
 
-  const barcodeRef = useRef(null);
-
-  // LOAD
+  // LOAD PRODUCTS
 
   useEffect(() => {
 
@@ -435,12 +320,12 @@ export default function BarcodeStudio() {
 
     } else {
 
+      setProducts(defaultProducts);
+
       localStorage.setItem(
         "products",
         JSON.stringify(defaultProducts)
       );
-
-      setProducts(defaultProducts);
 
     }
 
@@ -529,7 +414,7 @@ export default function BarcodeStudio() {
 
   };
 
-  // DELETE
+  // DELETE PRODUCT
 
   const deleteProduct = () => {
 
@@ -562,28 +447,6 @@ export default function BarcodeStudio() {
 
   };
 
-  // DOWNLOAD
-
-  const downloadPNG = async () => {
-
-    const canvas =
-      await html2canvas(
-        barcodeRef.current
-      );
-
-    const link =
-      document.createElement("a");
-
-    link.download =
-      `${selectedProduct.name}.png`;
-
-    link.href =
-      canvas.toDataURL();
-
-    link.click();
-
-  };
-
   return (
 
     <div
@@ -607,7 +470,7 @@ export default function BarcodeStudio() {
         Barcode Studio
       </h1>
 
-      {/* TOP PANEL */}
+      {/* TOP */}
 
       <div
         style={{
@@ -728,8 +591,6 @@ export default function BarcodeStudio() {
               borderRadius:"15px"
             }}
           />
-
-          {/* DETAILS */}
 
           <div
             style={{
@@ -876,7 +737,6 @@ export default function BarcodeStudio() {
           {/* BARCODE */}
 
           <div
-            ref={barcodeRef}
             style={{
               border:"2px solid #ddd",
               borderRadius:"20px",
@@ -897,48 +757,23 @@ export default function BarcodeStudio() {
 
           </div>
 
-          {/* BUTTONS */}
+          {/* BUTTON */}
 
-          <div
+          <button
+            onClick={printBarcode}
             style={{
-              display:"flex",
-              gap:"20px"
+              background:"#f4b400",
+              color:"black",
+              border:"none",
+              padding:"18px 35px",
+              borderRadius:"15px",
+              fontSize:"20px",
+              fontWeight:"bold",
+              cursor:"pointer"
             }}
           >
-
-            <button
-              onClick={printBarcode}
-              style={{
-                background:"#f4b400",
-                color:"black",
-                border:"none",
-                padding:"18px 35px",
-                borderRadius:"15px",
-                fontSize:"20px",
-                fontWeight:"bold",
-                cursor:"pointer"
-              }}
-            >
-              Print Barcode
-            </button>
-
-            <button
-              onClick={downloadPNG}
-              style={{
-                background:"#1e88e5",
-                color:"white",
-                border:"none",
-                padding:"18px 35px",
-                borderRadius:"15px",
-                fontSize:"20px",
-                fontWeight:"bold",
-                cursor:"pointer"
-              }}
-            >
-              Download PNG
-            </button>
-
-          </div>
+            Print Barcode
+          </button>
 
         </div>
 
