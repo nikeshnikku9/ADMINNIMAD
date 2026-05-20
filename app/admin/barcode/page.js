@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import dynamic from "next/dynamic";
 
 const Barcode = dynamic(
@@ -377,40 +377,14 @@ export default function BarcodeStudio() {
   ];
 
   const [products, setProducts] =
-    useState(defaultProducts);
+    useState([...defaultProducts]);
 
   const [selectedId, setSelectedId] =
     useState(1);
 
-  useEffect(() => {
-
-    const saved =
-      localStorage.getItem(
-        "barcode-products"
-      );
-
-    if(saved){
-
-      setProducts(
-        JSON.parse(saved)
-      );
-
-    }
-
-  }, []);
-
-  useEffect(() => {
-
-    localStorage.setItem(
-      "barcode-products",
-      JSON.stringify(products)
-    );
-
-  }, [products]);
-
   const selectedProduct =
     products.find(
-      (p)=>
+      (p) =>
         p.id === Number(selectedId)
     );
 
@@ -420,7 +394,7 @@ export default function BarcodeStudio() {
   ) => {
 
     const updated =
-      products.map((product)=>
+      products.map((product) =>
 
         product.id === selectedProduct.id
 
@@ -475,7 +449,7 @@ export default function BarcodeStudio() {
 
     const updated =
       products.filter(
-        (p)=>
+        (p) =>
           p.id !== selectedProduct.id
       );
 
@@ -515,11 +489,9 @@ export default function BarcodeStudio() {
 
     img.onload = () => {
 
-      canvas.width =
-        img.width;
+      canvas.width = img.width;
 
-      canvas.height =
-        img.height;
+      canvas.height = img.height;
 
       ctx.drawImage(
         img,
