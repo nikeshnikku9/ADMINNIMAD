@@ -68,7 +68,12 @@ export default function DashboardPage() {
         >
           Enquiries
         </a>
-
+        <a
+          href="/admin/pos"
+          style={card}
+       >
+          POS Billing
+        </a>
       </div>
 
     </div>
