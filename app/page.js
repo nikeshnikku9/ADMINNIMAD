@@ -1,220 +1,287 @@
 "use client";
 
-import Link from "next/link";
-
 export default function HomePage() {
+
+  const buttonStyle = {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: "100%",
+    padding: "22px 28px",
+    borderRadius: "24px",
+    marginBottom: "22px",
+    textDecoration: "none",
+    color: "white",
+    fontWeight: "bold",
+    boxShadow: "0 8px 25px rgba(0,0,0,0.35)",
+    border: "2px solid rgba(255,255,255,0.15)",
+    backdropFilter: "blur(6px)"
+  };
 
   return (
 
     <div
       style={{
         minHeight: "100vh",
-        background:
-          "linear-gradient(to bottom, #2b0f08, #4b1f14)",
-        color: "white",
-        fontFamily: "sans-serif"
+        backgroundImage:
+          "url('https://images.unsplash.com/photo-1596040033229-a9821ebd058d?q=80&w=1974&auto=format&fit=crop')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: "30px"
       }}
     >
 
-      {/* TOP NAVBAR */}
       <div
         style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          padding: "20px 40px",
-          borderBottom: "1px solid rgba(255,255,255,0.1)"
+          width: "100%",
+          maxWidth: "620px",
+          background: "rgba(20,10,5,0.82)",
+          borderRadius: "35px",
+          padding: "35px",
+          border: "2px solid rgba(255,180,0,0.25)",
+          boxShadow: "0 0 40px rgba(0,0,0,0.6)"
         }}
       >
 
-        <h1
-          style={{
-            fontSize: "38px",
-            fontWeight: "bold",
-            color: "#f4c400"
-          }}
-        >
-          NIMAD ZAYKA
-        </h1>
-
-        <div
-          style={{
-            display: "flex",
-            gap: "15px",
-            flexWrap: "wrap"
-          }}
-        >
-
-          <a
-            href="https://instagram.com"
-            target="_blank"
-            style={navBtn}
-          >
-            Instagram
-          </a>
-
-          <a
-            href="https://wa.me/916265996333"
-            target="_blank"
-            style={navBtn}
-          >
-            WhatsApp
-          </a>
-
-          <Link
-            href="/admin"
-            style={navBtn}
-          >
-            Admin Login
-          </Link>
-
-        </div>
-
-      </div>
-
-      {/* HERO SECTION */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          textAlign: "center",
-          padding: "100px 20px"
-        }}
-      >
-
-        <div
-          style={{
-            maxWidth: "900px"
-          }}
-        >
-
-          <h1
-            style={{
-              fontSize: "70px",
-              fontWeight: "bold",
-              color: "#f4c400",
-              marginBottom: "20px"
-            }}
-          >
-            NIMAD ZAYKA SPICES
-          </h1>
-
-          <p
-            style={{
-              fontSize: "24px",
-              color: "#f5d0a9",
-              lineHeight: "1.7",
-              marginBottom: "40px"
-            }}
-          >
-            Premium Indian Spices with authentic
-            Nimad taste. Experience rich aroma,
-            bold flavors, and traditional quality
-            in every pack.
-          </p>
+        {/* LOGO */}
+        <div style={{ textAlign: "center" }}>
 
           <div
             style={{
-              display: "flex",
-              justifyContent: "center",
-              gap: "20px",
-              flexWrap: "wrap"
+              background:
+                "linear-gradient(135deg,#b30000,#ff1a1a)",
+              padding: "35px",
+              borderRadius: "28px",
+              border: "3px solid #ffb300",
+              boxShadow: "0 0 35px rgba(255,100,0,0.5)"
             }}
           >
 
-            <a
-              href="https://wa.me/916265996333"
-              target="_blank"
-              style={heroBtn}
+            <h1
+              style={{
+                color: "white",
+                fontSize: "70px",
+                lineHeight: "78px",
+                margin: 0,
+                fontWeight: "900",
+                letterSpacing: "3px"
+              }}
             >
-              Order on WhatsApp
-            </a>
+              NIMAD
+              <br />
+              ZAYKA
+            </h1>
 
-            <Link
-              href="/admin"
-              style={heroBtn}
+            <div
+              style={{
+                marginTop: "10px",
+                color: "white",
+                fontSize: "30px",
+                letterSpacing: "5px",
+                fontWeight: "bold"
+              }}
             >
-              Admin Panel
-            </Link>
+              SPICES
+            </div>
 
+          </div>
+
+          <div
+            style={{
+              marginTop: "30px",
+              marginBottom: "35px",
+              color: "#ffcc66",
+              fontSize: "26px",
+              fontWeight: "bold",
+              letterSpacing: "2px"
+            }}
+          >
+            PREMIUM INDIAN SPICES
           </div>
 
         </div>
 
-      </div>
-
-      {/* PRODUCTS */}
-      <div
-        style={{
-          padding: "60px 40px"
-        }}
-      >
-
-        <h2
+        {/* WHATSAPP */}
+        <a
+          href="https://wa.me/916265996333"
+          target="_blank"
           style={{
-            textAlign: "center",
-            fontSize: "50px",
-            marginBottom: "50px",
-            color: "#f4c400"
+            ...buttonStyle,
+            background:
+              "linear-gradient(135deg,#1f8f2d,#39d353)"
           }}
         >
-          Our Products
-        </h2>
+          <div>
+            <div style={{ fontSize: "34px" }}>
+              Order on WhatsApp
+            </div>
+            <div style={{ fontSize: "20px" }}>
+              +91 6265996333
+            </div>
+          </div>
 
+          <div style={{ fontSize: "45px" }}>➜</div>
+        </a>
+
+        {/* INSTAGRAM */}
+        <a
+          href="https://instagram.com/nimadzayka.in"
+          target="_blank"
+          style={{
+            ...buttonStyle,
+            background:
+              "linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045)"
+          }}
+        >
+          <div>
+            <div style={{ fontSize: "34px" }}>
+              Follow on Instagram
+            </div>
+            <div style={{ fontSize: "20px" }}>
+              @nimadzayka.in
+            </div>
+          </div>
+
+          <div style={{ fontSize: "45px" }}>➜</div>
+        </a>
+
+        {/* WEBSITE */}
+        <a
+          href="https://www.nimadzayka.com"
+          target="_blank"
+          style={{
+            ...buttonStyle,
+            background:
+              "linear-gradient(135deg,#c97a00,#ffb300)"
+          }}
+        >
+          <div>
+            <div style={{ fontSize: "34px" }}>
+              Visit Our Website
+            </div>
+            <div style={{ fontSize: "20px" }}>
+              www.nimadzayka.com
+            </div>
+          </div>
+
+          <div style={{ fontSize: "45px" }}>➜</div>
+        </a>
+
+        {/* CALL */}
+        <a
+          href="tel:6265996333"
+          style={{
+            ...buttonStyle,
+            background:
+              "linear-gradient(135deg,#b30000,#ff1f1f)"
+          }}
+        >
+          <div>
+            <div style={{ fontSize: "34px" }}>
+              Call Us
+            </div>
+            <div style={{ fontSize: "20px" }}>
+              +91 6265996333
+            </div>
+          </div>
+
+          <div style={{ fontSize: "45px" }}>➜</div>
+        </a>
+
+        {/* ADDRESS */}
+        <a
+          href="https://maps.google.com"
+          target="_blank"
+          style={{
+            ...buttonStyle,
+            background:
+              "linear-gradient(135deg,#8b4513,#cc7000)"
+          }}
+        >
+          <div>
+            <div style={{ fontSize: "34px" }}>
+              Our Address
+            </div>
+            <div style={{ fontSize: "20px" }}>
+              Nimad ZAYKA, India
+            </div>
+          </div>
+
+          <div style={{ fontSize: "45px" }}>➜</div>
+        </a>
+
+        {/* BROCHURE */}
+        <a
+          href="#"
+          style={{
+            ...buttonStyle,
+            background:
+              "linear-gradient(135deg,#8b0000,#d62828)"
+          }}
+        >
+          <div>
+            <div style={{ fontSize: "34px" }}>
+              View Brochure
+            </div>
+            <div style={{ fontSize: "20px" }}>
+              All products & catalogue
+            </div>
+          </div>
+
+          <div style={{ fontSize: "45px" }}>➜</div>
+        </a>
+
+        {/* FOOTER */}
         <div
           style={{
-            display: "grid",
-            gridTemplateColumns:
-              "repeat(auto-fit,minmax(250px,1fr))",
-            gap: "25px"
+            marginTop: "40px",
+            paddingTop: "25px",
+            borderTop: "1px solid rgba(255,255,255,0.15)",
+            display: "flex",
+            justifyContent: "space-between",
+            flexWrap: "wrap",
+            gap: "20px",
+            textAlign: "center"
           }}
         >
 
-          {products.map((item,index)=>(
+          <div style={{ color: "#ffcc66" }}>
+            <div style={{ fontSize: "38px" }}>
+              fssai
+            </div>
+            <div style={{ fontSize: "18px" }}>
+              FSSAI: 21425190000195
+            </div>
+          </div>
 
+          <div style={{ color: "#ffcc66" }}>
+            <div style={{ fontSize: "42px" }}>
+              🌿
+            </div>
             <div
-              key={index}
               style={{
-                background: "#5a2415",
-                padding: "25px",
-                borderRadius: "20px",
-                border:
-                  "1px solid rgba(255,255,255,0.1)"
+                fontSize: "20px",
+                fontWeight: "bold"
               }}
             >
-
-              <h3
-                style={{
-                  fontSize: "28px",
-                  marginBottom: "15px",
-                  color: "#f4c400"
-                }}
-              >
-                {item.name}
-              </h3>
-
-              <p
-                style={{
-                  color: "#f5d0a9",
-                  marginBottom: "10px"
-                }}
-              >
-                {item.size}
-              </p>
-
-              <p
-                style={{
-                  fontSize: "22px",
-                  fontWeight: "bold"
-                }}
-              >
-                ₹ {item.price}
-              </p>
-
+              100% NATURAL
             </div>
+          </div>
 
-          ))}
+          <div
+            style={{
+              color: "#ffcc66",
+              maxWidth: "220px",
+              fontSize: "20px",
+              fontWeight: "bold"
+            }}
+          >
+            Packed with Purity,
+            Delivered with Trust.
+          </div>
 
         </div>
 
@@ -225,77 +292,3 @@ export default function HomePage() {
   );
 
 }
-
-const navBtn = {
-
-  background: "#f4c400",
-
-  color: "#222",
-
-  padding: "12px 20px",
-
-  borderRadius: "12px",
-
-  textDecoration: "none",
-
-  fontWeight: "bold"
-
-};
-
-const heroBtn = {
-
-  background: "#f4c400",
-
-  color: "#222",
-
-  padding: "16px 28px",
-
-  borderRadius: "14px",
-
-  textDecoration: "none",
-
-  fontWeight: "bold",
-
-  fontSize: "18px"
-
-};
-
-const products = [
-
-  {
-    name: "Haldi Powder",
-    size: "50g / 100g / 200g / 500g / 1kg",
-    price: 45
-  },
-
-  {
-    name: "Mirchi Powder",
-    size: "50g / 100g / 200g / 500g / 1kg",
-    price: 65
-  },
-
-  {
-    name: "Dhaniya Powder",
-    size: "50g / 100g / 200g / 500g / 1kg",
-    price: 55
-  },
-
-  {
-    name: "Meat Masala",
-    size: "20g / 50g / 100g",
-    price: 160
-  },
-
-  {
-    name: "Chicken Masala",
-    size: "20g / 50g / 100g",
-    price: 160
-  },
-
-  {
-    name: "Khada Masala",
-    size: "50g / 100g",
-    price: 180
-  }
-
-];
