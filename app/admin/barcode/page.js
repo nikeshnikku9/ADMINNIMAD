@@ -14,6 +14,8 @@ export default function BarcodeStudio() {
 
   const defaultProducts = [
 
+    // PREMIUM BOX PACKAGING
+
     {
       id: 1,
       name: "MEAT MASALA 20G",
@@ -46,9 +48,9 @@ export default function BarcodeStudio() {
 
     {
       id: 4,
-      name: "CHICKEN MASALA 20G",
+      name: "GARAM MASALA 50G",
       barcode: "920100000004",
-      mrp: 35,
+      mrp: 55,
       gst: "12%",
       stock: 100,
       category: "Premium Box Packaging"
@@ -56,8 +58,88 @@ export default function BarcodeStudio() {
 
     {
       id: 5,
-      name: "CHICKEN MASALA 50G",
+      name: "GARAM MASALA 100G",
       barcode: "920100000005",
+      mrp: 110,
+      gst: "12%",
+      stock: 80,
+      category: "Premium Box Packaging"
+    },
+
+    {
+      id: 6,
+      name: "SHAHI PANEER MASALA 50G",
+      barcode: "920100000006",
+      mrp: 65,
+      gst: "12%",
+      stock: 90,
+      category: "Premium Box Packaging"
+    },
+
+    {
+      id: 7,
+      name: "SHAHI PANEER MASALA 100G",
+      barcode: "920100000007",
+      mrp: 125,
+      gst: "12%",
+      stock: 70,
+      category: "Premium Box Packaging"
+    },
+
+    {
+      id: 8,
+      name: "DAL BATI MASALA 50G",
+      barcode: "920100000008",
+      mrp: 50,
+      gst: "12%",
+      stock: 100,
+      category: "Premium Box Packaging"
+    },
+
+    {
+      id: 9,
+      name: "DAL BATI MASALA 100G",
+      barcode: "920100000009",
+      mrp: 100,
+      gst: "12%",
+      stock: 80,
+      category: "Premium Box Packaging"
+    },
+
+    {
+      id: 10,
+      name: "KHADA MASALA 50G",
+      barcode: "920100000010",
+      mrp: 70,
+      gst: "12%",
+      stock: 60,
+      category: "Premium Box Packaging"
+    },
+
+    {
+      id: 11,
+      name: "KHADA MASALA 100G",
+      barcode: "920100000011",
+      mrp: 140,
+      gst: "12%",
+      stock: 50,
+      category: "Premium Box Packaging"
+    },
+
+    {
+      id: 12,
+      name: "CHICKEN MASALA 20G",
+      barcode: "920100000012",
+      mrp: 35,
+      gst: "12%",
+      stock: 120,
+      category: "Premium Box Packaging"
+    },
+
+    {
+      id: 13,
+      name: "CHICKEN MASALA 50G",
+      barcode: "920100000013",
       mrp: 70,
       gst: "12%",
       stock: 90,
@@ -65,9 +147,9 @@ export default function BarcodeStudio() {
     },
 
     {
-      id: 6,
+      id: 14,
       name: "CHICKEN MASALA 100G",
-      barcode: "920100000006",
+      barcode: "920100000014",
       mrp: 140,
       gst: "12%",
       stock: 70,
@@ -75,19 +157,21 @@ export default function BarcodeStudio() {
     },
 
     {
-      id: 7,
+      id: 15,
       name: "HAND MADE PAPAD 200G",
-      barcode: "920100000007",
+      barcode: "920100000015",
       mrp: 90,
       gst: "5%",
-      stock: 60,
+      stock: 100,
       category: "Premium Box Packaging"
     },
 
+    // HALDI POWDER
+
     {
-      id: 8,
+      id: 16,
       name: "HALDI POWDER 50G",
-      barcode: "920100000008",
+      barcode: "920100000016",
       mrp: 25,
       gst: "5%",
       stock: 200,
@@ -95,9 +179,9 @@ export default function BarcodeStudio() {
     },
 
     {
-      id: 9,
+      id: 17,
       name: "HALDI POWDER 100G",
-      barcode: "920100000009",
+      barcode: "920100000017",
       mrp: 45,
       gst: "5%",
       stock: 180,
@@ -105,9 +189,9 @@ export default function BarcodeStudio() {
     },
 
     {
-      id: 10,
+      id: 18,
       name: "HALDI POWDER 200G",
-      barcode: "920100000010",
+      barcode: "920100000018",
       mrp: 80,
       gst: "5%",
       stock: 150,
@@ -115,39 +199,201 @@ export default function BarcodeStudio() {
     },
 
     {
-      id: 11,
-      name: "MIRCHI POWDER 100G",
-      barcode: "920100000011",
-      mrp: 65,
+      id: 19,
+      name: "HALDI POWDER 500G",
+      barcode: "920100000019",
+      mrp: 180,
       gst: "5%",
-      stock: 140,
+      stock: 120,
       category: "Standard Plastic Packaging"
     },
 
     {
-      id: 12,
-      name: "DHANIYA POWDER 100G",
-      barcode: "920100000012",
-      mrp: 40,
+      id: 20,
+      name: "HALDI POWDER 1KG",
+      barcode: "920100000020",
+      mrp: 340,
+      gst: "5%",
+      stock: 80,
+      category: "Standard Plastic Packaging"
+    },
+
+    // MIRCHI POWDER
+
+    {
+      id: 21,
+      name: "MIRCHI POWDER 50G",
+      barcode: "920100000021",
+      mrp: 35,
+      gst: "5%",
+      stock: 180,
+      category: "Standard Plastic Packaging"
+    },
+
+    {
+      id: 22,
+      name: "MIRCHI POWDER 100G",
+      barcode: "920100000022",
+      mrp: 65,
+      gst: "5%",
+      stock: 160,
+      category: "Standard Plastic Packaging"
+    },
+
+    {
+      id: 23,
+      name: "MIRCHI POWDER 200G",
+      barcode: "920100000023",
+      mrp: 120,
       gst: "5%",
       stock: 130,
+      category: "Standard Plastic Packaging"
+    },
+
+    {
+      id: 24,
+      name: "MIRCHI POWDER 500G",
+      barcode: "920100000024",
+      mrp: 280,
+      gst: "5%",
+      stock: 100,
+      category: "Standard Plastic Packaging"
+    },
+
+    {
+      id: 25,
+      name: "MIRCHI POWDER 1KG",
+      barcode: "920100000025",
+      mrp: 520,
+      gst: "5%",
+      stock: 70,
+      category: "Standard Plastic Packaging"
+    },
+
+    // DHANIYA POWDER
+
+    {
+      id: 26,
+      name: "DHANIYA POWDER 50G",
+      barcode: "920100000026",
+      mrp: 20,
+      gst: "5%",
+      stock: 190,
+      category: "Standard Plastic Packaging"
+    },
+
+    {
+      id: 27,
+      name: "DHANIYA POWDER 100G",
+      barcode: "920100000027",
+      mrp: 40,
+      gst: "5%",
+      stock: 170,
+      category: "Standard Plastic Packaging"
+    },
+
+    {
+      id: 28,
+      name: "DHANIYA POWDER 200G",
+      barcode: "920100000028",
+      mrp: 75,
+      gst: "5%",
+      stock: 150,
+      category: "Standard Plastic Packaging"
+    },
+
+    {
+      id: 29,
+      name: "DHANIYA POWDER 500G",
+      barcode: "920100000029",
+      mrp: 160,
+      gst: "5%",
+      stock: 100,
+      category: "Standard Plastic Packaging"
+    },
+
+    {
+      id: 30,
+      name: "DHANIYA POWDER 1KG",
+      barcode: "920100000030",
+      mrp: 300,
+      gst: "5%",
+      stock: 80,
+      category: "Standard Plastic Packaging"
+    },
+
+    // GARAM MASALA STANDARD
+
+    {
+      id: 31,
+      name: "GARAM MASALA 50G",
+      barcode: "920100000031",
+      mrp: 45,
+      gst: "5%",
+      stock: 150,
+      category: "Standard Plastic Packaging"
+    },
+
+    {
+      id: 32,
+      name: "GARAM MASALA 100G",
+      barcode: "920100000032",
+      mrp: 85,
+      gst: "5%",
+      stock: 130,
+      category: "Standard Plastic Packaging"
+    },
+
+    {
+      id: 33,
+      name: "GARAM MASALA 200G",
+      barcode: "920100000033",
+      mrp: 160,
+      gst: "5%",
+      stock: 100,
+      category: "Standard Plastic Packaging"
+    },
+
+    {
+      id: 34,
+      name: "GARAM MASALA 500G",
+      barcode: "920100000034",
+      mrp: 360,
+      gst: "5%",
+      stock: 70,
+      category: "Standard Plastic Packaging"
+    },
+
+    {
+      id: 35,
+      name: "GARAM MASALA 1KG",
+      barcode: "920100000035",
+      mrp: 680,
+      gst: "5%",
+      stock: 50,
       category: "Standard Plastic Packaging"
     }
 
   ];
 
-  const [products, setProducts] = useState(defaultProducts);
+  const [products, setProducts] =
+    useState(defaultProducts);
 
-  const [selectedId, setSelectedId] = useState(1);
+  const [selectedId, setSelectedId] =
+    useState(1);
 
   useEffect(() => {
 
     const saved =
-      localStorage.getItem("barcode-products");
+      localStorage.getItem(
+        "barcode-products"
+      );
 
     if(saved){
 
-      setProducts(JSON.parse(saved));
+      setProducts(
+        JSON.parse(saved)
+      );
 
     }
 
@@ -164,10 +410,9 @@ export default function BarcodeStudio() {
 
   const selectedProduct =
     products.find(
-      (p)=>p.id === Number(selectedId)
+      (p)=>
+        p.id === Number(selectedId)
     );
-
-  // UPDATE FIELD
 
   const updateField = (
     field,
@@ -191,8 +436,6 @@ export default function BarcodeStudio() {
     setProducts(updated);
 
   };
-
-  // ADD PRODUCT
 
   const addProduct = () => {
 
@@ -228,8 +471,6 @@ export default function BarcodeStudio() {
 
   };
 
-  // DELETE
-
   const deleteProduct = () => {
 
     const updated =
@@ -248,15 +489,11 @@ export default function BarcodeStudio() {
 
   };
 
-  // PRINT
-
   const printBarcode = () => {
 
     window.print();
 
   };
-
-  // DOWNLOAD
 
   const downloadBarcode = () => {
 
@@ -334,8 +571,6 @@ export default function BarcodeStudio() {
       >
         Barcode Studio
       </h1>
-
-      {/* TOP */}
 
       <div
         style={{
@@ -424,8 +659,6 @@ export default function BarcodeStudio() {
         </div>
 
       </div>
-
-      {/* PRODUCT */}
 
       {selectedProduct && (
 
@@ -549,8 +782,6 @@ export default function BarcodeStudio() {
 
           </div>
 
-          {/* BARCODE */}
-
           <div
             ref={barcodeRef}
             style={{
@@ -572,8 +803,6 @@ export default function BarcodeStudio() {
             />
 
           </div>
-
-          {/* BUTTONS */}
 
           <div
             style={{
