@@ -1,7 +1,17 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Barcode from "react-barcode";
+
+import dynamic from "next/dynamic";
+
+// FIXED BARCODE IMPORT
+
+const Barcode = dynamic(
+  () => import("react-barcode"),
+  {
+    ssr: false
+  }
+);
 
 export default function BarcodeStudio() {
 
@@ -412,6 +422,8 @@ export default function BarcodeStudio() {
   const [selectedId, setSelectedId] =
     useState(1);
 
+  // LOAD PRODUCTS
+
   useEffect(() => {
 
     const saved =
@@ -431,6 +443,8 @@ export default function BarcodeStudio() {
 
   }, []);
 
+  // AUTO SAVE
+
   useEffect(() => {
 
     if(products.length > 0){
@@ -444,11 +458,15 @@ export default function BarcodeStudio() {
 
   }, [products]);
 
+  // SELECTED PRODUCT
+
   const selectedProduct =
     products.find(
       (p)=>
         p.id === Number(selectedId)
     );
+
+  // PRINT
 
   const printBarcode = () => {
 
@@ -500,9 +518,13 @@ export default function BarcodeStudio() {
 
   };
 
+  // DOWNLOAD
+
   const downloadBarcode = () => {
 
-    window.print();
+    alert(
+      "Use Print → Save as PDF"
+    );
 
   };
 
@@ -531,16 +553,14 @@ export default function BarcodeStudio() {
         Barcode Studio
       </h1>
 
-      {/* SELECT BOX */}
+      {/* SELECT */}
 
       <div
         style={{
           background:"white",
           borderRadius:"25px",
           padding:"30px",
-          marginBottom:"25px",
-          boxShadow:
-            "0 10px 30px rgba(0,0,0,0.2)"
+          marginBottom:"25px"
         }}
       >
 
@@ -595,9 +615,7 @@ export default function BarcodeStudio() {
           style={{
             background:"white",
             borderRadius:"25px",
-            padding:"35px",
-            boxShadow:
-              "0 10px 30px rgba(0,0,0,0.25)"
+            padding:"35px"
           }}
         >
 
@@ -626,21 +644,9 @@ export default function BarcodeStudio() {
 
             <div>
 
-              <h3
-                style={{
-                  fontSize:"28px",
-                  color:"#555"
-                }}
-              >
-                SKU:
-              </h3>
+              <h3>SKU:</h3>
 
-              <p
-                style={{
-                  fontSize:"32px",
-                  marginTop:"8px"
-                }}
-              >
+              <p>
                 {selectedProduct.sku}
               </p>
 
@@ -648,21 +654,9 @@ export default function BarcodeStudio() {
 
             <div>
 
-              <h3
-                style={{
-                  fontSize:"28px",
-                  color:"#555"
-                }}
-              >
-                MRP:
-              </h3>
+              <h3>MRP:</h3>
 
-              <p
-                style={{
-                  fontSize:"32px",
-                  marginTop:"8px"
-                }}
-              >
+              <p>
                 ₹ {selectedProduct.mrp}
               </p>
 
@@ -670,21 +664,9 @@ export default function BarcodeStudio() {
 
             <div>
 
-              <h3
-                style={{
-                  fontSize:"28px",
-                  color:"#555"
-                }}
-              >
-                Stock:
-              </h3>
+              <h3>Stock:</h3>
 
-              <p
-                style={{
-                  fontSize:"32px",
-                  marginTop:"8px"
-                }}
-              >
+              <p>
                 {selectedProduct.stock}
               </p>
 
@@ -692,21 +674,9 @@ export default function BarcodeStudio() {
 
             <div>
 
-              <h3
-                style={{
-                  fontSize:"28px",
-                  color:"#555"
-                }}
-              >
-                GST:
-              </h3>
+              <h3>GST:</h3>
 
-              <p
-                style={{
-                  fontSize:"32px",
-                  marginTop:"8px"
-                }}
-              >
+              <p>
                 {selectedProduct.gst}
               </p>
 
@@ -714,21 +684,9 @@ export default function BarcodeStudio() {
 
             <div>
 
-              <h3
-                style={{
-                  fontSize:"28px",
-                  color:"#555"
-                }}
-              >
-                Category:
-              </h3>
+              <h3>Category:</h3>
 
-              <p
-                style={{
-                  fontSize:"30px",
-                  marginTop:"8px"
-                }}
-              >
+              <p>
                 {selectedProduct.category}
               </p>
 
@@ -736,21 +694,11 @@ export default function BarcodeStudio() {
 
             <div>
 
-              <h3
-                style={{
-                  fontSize:"28px",
-                  color:"#555"
-                }}
-              >
+              <h3>
                 Barcode Number:
               </h3>
 
-              <p
-                style={{
-                  fontSize:"30px",
-                  marginTop:"8px"
-                }}
-              >
+              <p>
                 {selectedProduct.barcode}
               </p>
 
