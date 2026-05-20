@@ -5,18 +5,14 @@ import dynamic from "next/dynamic";
 
 const Barcode = dynamic(
   () => import("react-barcode"),
-  {
-    ssr: false
-  }
+  { ssr: false }
 );
 
 export default function BarcodeStudio() {
 
-  // PRODUCTS
+  // FORCE LOAD PRODUCTS EVERY TIME
 
   const defaultProducts = [
-
-    // PREMIUM BOX PACKAGING
 
     {
       id: 1,
@@ -295,51 +291,148 @@ export default function BarcodeStudio() {
       stock: 70,
       gst: "5%",
       category: "Standard Plastic Packaging"
+    },
+
+    // DHANIYA
+
+    {
+      id: 26,
+      name: "DHANIYA POWDER 50G",
+      sku: "NZ-DP-50",
+      barcode: "920100000026",
+      mrp: 20,
+      stock: 190,
+      gst: "5%",
+      category: "Standard Plastic Packaging"
+    },
+
+    {
+      id: 27,
+      name: "DHANIYA POWDER 100G",
+      sku: "NZ-DP-100",
+      barcode: "920100000027",
+      mrp: 40,
+      stock: 170,
+      gst: "5%",
+      category: "Standard Plastic Packaging"
+    },
+
+    {
+      id: 28,
+      name: "DHANIYA POWDER 200G",
+      sku: "NZ-DP-200",
+      barcode: "920100000028",
+      mrp: 75,
+      stock: 150,
+      gst: "5%",
+      category: "Standard Plastic Packaging"
+    },
+
+    {
+      id: 29,
+      name: "DHANIYA POWDER 500G",
+      sku: "NZ-DP-500",
+      barcode: "920100000029",
+      mrp: 160,
+      stock: 100,
+      gst: "5%",
+      category: "Standard Plastic Packaging"
+    },
+
+    {
+      id: 30,
+      name: "DHANIYA POWDER 1KG",
+      sku: "NZ-DP-1KG",
+      barcode: "920100000030",
+      mrp: 300,
+      stock: 80,
+      gst: "5%",
+      category: "Standard Plastic Packaging"
+    },
+
+    // GARAM MASALA STANDARD
+
+    {
+      id: 31,
+      name: "GARAM MASALA 50G",
+      sku: "NZ-SGM-50",
+      barcode: "920100000031",
+      mrp: 45,
+      stock: 150,
+      gst: "5%",
+      category: "Standard Plastic Packaging"
+    },
+
+    {
+      id: 32,
+      name: "GARAM MASALA 100G",
+      sku: "NZ-SGM-100",
+      barcode: "920100000032",
+      mrp: 85,
+      stock: 130,
+      gst: "5%",
+      category: "Standard Plastic Packaging"
+    },
+
+    {
+      id: 33,
+      name: "GARAM MASALA 200G",
+      sku: "NZ-SGM-200",
+      barcode: "920100000033",
+      mrp: 160,
+      stock: 100,
+      gst: "5%",
+      category: "Standard Plastic Packaging"
+    },
+
+    {
+      id: 34,
+      name: "GARAM MASALA 500G",
+      sku: "NZ-SGM-500",
+      barcode: "920100000034",
+      mrp: 360,
+      stock: 70,
+      gst: "5%",
+      category: "Standard Plastic Packaging"
+    },
+
+    {
+      id: 35,
+      name: "GARAM MASALA 1KG",
+      sku: "NZ-SGM-1KG",
+      barcode: "920100000035",
+      mrp: 680,
+      stock: 50,
+      gst: "5%",
+      category: "Standard Plastic Packaging"
     }
 
   ];
 
   const [products, setProducts] =
-    useState([]);
+    useState(defaultProducts);
 
   const [selectedId, setSelectedId] =
     useState(1);
 
-  // LOAD PRODUCTS
+  // FORCE RESET STORAGE
 
   useEffect(() => {
 
-    const saved =
-      localStorage.getItem("products");
+    localStorage.clear();
 
-    if(saved){
-
-      setProducts(
-        JSON.parse(saved)
-      );
-
-    } else {
-
-      setProducts(defaultProducts);
-
-      localStorage.setItem(
-        "products",
-        JSON.stringify(defaultProducts)
-      );
-
-    }
+    localStorage.setItem(
+      "products",
+      JSON.stringify(defaultProducts)
+    );
 
   }, []);
-
-  // SELECTED PRODUCT
 
   const selectedProduct =
     products.find(
       (p)=>
         p.id === Number(selectedId)
     );
-
-  // UPDATE
 
   const updateField = (
     field,
@@ -362,14 +455,7 @@ export default function BarcodeStudio() {
 
     setProducts(updated);
 
-    localStorage.setItem(
-      "products",
-      JSON.stringify(updated)
-    );
-
   };
-
-  // ADD PRODUCT
 
   const addProduct = () => {
 
@@ -398,23 +484,14 @@ export default function BarcodeStudio() {
 
     };
 
-    const updated = [
+    setProducts([
       ...products,
       newProduct
-    ];
-
-    setProducts(updated);
-
-    localStorage.setItem(
-      "products",
-      JSON.stringify(updated)
-    );
+    ]);
 
     setSelectedId(newProduct.id);
 
   };
-
-  // DELETE PRODUCT
 
   const deleteProduct = () => {
 
@@ -426,11 +503,6 @@ export default function BarcodeStudio() {
 
     setProducts(updated);
 
-    localStorage.setItem(
-      "products",
-      JSON.stringify(updated)
-    );
-
     if(updated.length > 0){
 
       setSelectedId(updated[0].id);
@@ -438,8 +510,6 @@ export default function BarcodeStudio() {
     }
 
   };
-
-  // PRINT
 
   const printBarcode = () => {
 
@@ -469,8 +539,6 @@ export default function BarcodeStudio() {
       >
         Barcode Studio
       </h1>
-
-      {/* TOP */}
 
       <div
         style={{
@@ -561,8 +629,6 @@ export default function BarcodeStudio() {
         </div>
 
       </div>
-
-      {/* PRODUCT CARD */}
 
       {selectedProduct && (
 
@@ -734,8 +800,6 @@ export default function BarcodeStudio() {
 
           </div>
 
-          {/* BARCODE */}
-
           <div
             style={{
               border:"2px solid #ddd",
@@ -756,8 +820,6 @@ export default function BarcodeStudio() {
             />
 
           </div>
-
-          {/* BUTTON */}
 
           <button
             onClick={printBarcode}
