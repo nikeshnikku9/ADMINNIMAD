@@ -1,180 +1,222 @@
 "use client";
 
-import { useState } from "react";
+import Link from "next/link";
 
-export default function AdminLoginPage() {
-
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleLogin = () => {
-
-    // LOGIN CHECK
-    if (
-      username === "admin" &&
-      password === "nikesh@09"
-    ) {
-
-      // SAVE LOGIN
-      localStorage.setItem(
-        "nimad-admin-login",
-        "true"
-      );
-
-      // REDIRECT
-      window.location.href =
-        "/admin/dashboard";
-
-    } else {
-
-      alert(
-        "Invalid Username or Password"
-      );
-
-    }
-
-  };
+export default function HomePage() {
 
   return (
 
     <div
       style={{
         minHeight: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
         background:
-          "linear-gradient(to right, #2a120d, #4d1f14)"
+          "linear-gradient(to bottom, #2b0f08, #4b1f14)",
+        color: "white",
+        fontFamily: "sans-serif"
       }}
     >
 
+      {/* TOP NAVBAR */}
       <div
         style={{
-          width: "420px",
-          background: "rgba(0,0,0,0.85)",
-          padding: "40px",
-          borderRadius: "24px",
-          border: "2px solid #f4c400",
-          boxShadow:
-            "0 0 35px rgba(255,215,0,0.3)"
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          padding: "20px 40px",
+          borderBottom: "1px solid rgba(255,255,255,0.1)"
         }}
       >
 
-        {/* TOP */}
+        <h1
+          style={{
+            fontSize: "38px",
+            fontWeight: "bold",
+            color: "#f4c400"
+          }}
+        >
+          NIMAD ZAYKA
+        </h1>
+
         <div
           style={{
-            textAlign: "center",
-            marginBottom: "35px"
+            display: "flex",
+            gap: "15px",
+            flexWrap: "wrap"
           }}
         >
 
-          <div
-            style={{
-              fontSize: "55px",
-              marginBottom: "10px"
-            }}
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            style={navBtn}
           >
-            🔐
-          </div>
+            Instagram
+          </a>
+
+          <a
+            href="https://wa.me/916265996333"
+            target="_blank"
+            style={navBtn}
+          >
+            WhatsApp
+          </a>
+
+          <Link
+            href="/admin"
+            style={navBtn}
+          >
+            Admin Login
+          </Link>
+
+        </div>
+
+      </div>
+
+      {/* HERO SECTION */}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          textAlign: "center",
+          padding: "100px 20px"
+        }}
+      >
+
+        <div
+          style={{
+            maxWidth: "900px"
+          }}
+        >
 
           <h1
             style={{
+              fontSize: "70px",
+              fontWeight: "bold",
               color: "#f4c400",
-              fontSize: "42px",
-              marginBottom: "10px",
-              fontWeight: "bold"
+              marginBottom: "20px"
             }}
           >
-            Admin Login
+            NIMAD ZAYKA SPICES
           </h1>
 
           <p
             style={{
-              color: "#fff",
-              fontSize: "18px"
+              fontSize: "24px",
+              color: "#f5d0a9",
+              lineHeight: "1.7",
+              marginBottom: "40px"
             }}
           >
-            NIMAD ZAYKA SPICES
+            Premium Indian Spices with authentic
+            Nimad taste. Experience rich aroma,
+            bold flavors, and traditional quality
+            in every pack.
           </p>
 
-        </div>
-
-        {/* USERNAME */}
-        <div
-          style={{
-            marginBottom: "20px"
-          }}
-        >
-
-          <label
+          <div
             style={{
-              color: "#fff",
-              display: "block",
-              marginBottom: "8px",
-              fontWeight: "bold"
+              display: "flex",
+              justifyContent: "center",
+              gap: "20px",
+              flexWrap: "wrap"
             }}
           >
-            Username
-          </label>
 
-          <input
-            type="text"
-            placeholder="Enter username"
-            value={username}
-            onChange={(e)=>
-              setUsername(e.target.value)
-            }
-            style={inputStyle}
-          />
+            <a
+              href="https://wa.me/916265996333"
+              target="_blank"
+              style={heroBtn}
+            >
+              Order on WhatsApp
+            </a>
+
+            <Link
+              href="/admin"
+              style={heroBtn}
+            >
+              Admin Panel
+            </Link>
+
+          </div>
 
         </div>
 
-        {/* PASSWORD */}
+      </div>
+
+      {/* PRODUCTS */}
+      <div
+        style={{
+          padding: "60px 40px"
+        }}
+      >
+
+        <h2
+          style={{
+            textAlign: "center",
+            fontSize: "50px",
+            marginBottom: "50px",
+            color: "#f4c400"
+          }}
+        >
+          Our Products
+        </h2>
+
         <div
           style={{
-            marginBottom: "25px"
+            display: "grid",
+            gridTemplateColumns:
+              "repeat(auto-fit,minmax(250px,1fr))",
+            gap: "25px"
           }}
         >
 
-          <label
-            style={{
-              color: "#fff",
-              display: "block",
-              marginBottom: "8px",
-              fontWeight: "bold"
-            }}
-          >
-            Password
-          </label>
+          {products.map((item,index)=>(
 
-          <input
-            type="password"
-            placeholder="Enter password"
-            value={password}
-            onChange={(e)=>
-              setPassword(e.target.value)
-            }
-            style={inputStyle}
-          />
+            <div
+              key={index}
+              style={{
+                background: "#5a2415",
+                padding: "25px",
+                borderRadius: "20px",
+                border:
+                  "1px solid rgba(255,255,255,0.1)"
+              }}
+            >
+
+              <h3
+                style={{
+                  fontSize: "28px",
+                  marginBottom: "15px",
+                  color: "#f4c400"
+                }}
+              >
+                {item.name}
+              </h3>
+
+              <p
+                style={{
+                  color: "#f5d0a9",
+                  marginBottom: "10px"
+                }}
+              >
+                {item.size}
+              </p>
+
+              <p
+                style={{
+                  fontSize: "22px",
+                  fontWeight: "bold"
+                }}
+              >
+                ₹ {item.price}
+              </p>
+
+            </div>
+
+          ))}
 
         </div>
-
-        {/* LOGIN BUTTON */}
-        <button
-          onClick={handleLogin}
-          style={{
-            width: "100%",
-            padding: "16px",
-            background: "#f4c400",
-            border: "none",
-            borderRadius: "14px",
-            fontWeight: "bold",
-            fontSize: "18px",
-            cursor: "pointer"
-          }}
-        >
-          Login to Dashboard
-        </button>
 
       </div>
 
@@ -184,22 +226,76 @@ export default function AdminLoginPage() {
 
 }
 
-const inputStyle = {
+const navBtn = {
 
-  width: "100%",
+  background: "#f4c400",
 
-  padding: "15px",
+  color: "#222",
+
+  padding: "12px 20px",
 
   borderRadius: "12px",
 
-  border: "1px solid #666",
+  textDecoration: "none",
 
-  background: "#222",
-
-  color: "#fff",
-
-  fontSize: "16px",
-
-  outline: "none"
+  fontWeight: "bold"
 
 };
+
+const heroBtn = {
+
+  background: "#f4c400",
+
+  color: "#222",
+
+  padding: "16px 28px",
+
+  borderRadius: "14px",
+
+  textDecoration: "none",
+
+  fontWeight: "bold",
+
+  fontSize: "18px"
+
+};
+
+const products = [
+
+  {
+    name: "Haldi Powder",
+    size: "50g / 100g / 200g / 500g / 1kg",
+    price: 45
+  },
+
+  {
+    name: "Mirchi Powder",
+    size: "50g / 100g / 200g / 500g / 1kg",
+    price: 65
+  },
+
+  {
+    name: "Dhaniya Powder",
+    size: "50g / 100g / 200g / 500g / 1kg",
+    price: 55
+  },
+
+  {
+    name: "Meat Masala",
+    size: "20g / 50g / 100g",
+    price: 160
+  },
+
+  {
+    name: "Chicken Masala",
+    size: "20g / 50g / 100g",
+    price: 160
+  },
+
+  {
+    name: "Khada Masala",
+    size: "50g / 100g",
+    price: 180
+  }
+
+];
