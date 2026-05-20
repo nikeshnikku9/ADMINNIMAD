@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import dynamic from "next/dynamic";
 
-// FIXED BARCODE IMPORT
+import html2canvas from "html2canvas";
 
 const Barcode = dynamic(
   () => import("react-barcode"),
@@ -184,237 +184,236 @@ export default function BarcodeStudio() {
       stock: 100,
       gst: "5%",
       category: "Premium Box Packaging"
-    },
-
-    // HALDI
-
-    {
-      id: 16,
-      name: "HALDI POWDER 50G",
-      sku: "NZ-HP-50",
-      barcode: "920100000016",
-      mrp: 25,
-      stock: 200,
-      gst: "5%",
-      category: "Standard Plastic Packaging"
-    },
-
-    {
-      id: 17,
-      name: "HALDI POWDER 100G",
-      sku: "NZ-HP-100",
-      barcode: "920100000017",
-      mrp: 45,
-      stock: 180,
-      gst: "5%",
-      category: "Standard Plastic Packaging"
-    },
-
-    {
-      id: 18,
-      name: "HALDI POWDER 200G",
-      sku: "NZ-HP-200",
-      barcode: "920100000018",
-      mrp: 80,
-      stock: 150,
-      gst: "5%",
-      category: "Standard Plastic Packaging"
-    },
-
-    {
-      id: 19,
-      name: "HALDI POWDER 500G",
-      sku: "NZ-HP-500",
-      barcode: "920100000019",
-      mrp: 180,
-      stock: 120,
-      gst: "5%",
-      category: "Standard Plastic Packaging"
-    },
-
-    {
-      id: 20,
-      name: "HALDI POWDER 1KG",
-      sku: "NZ-HP-1KG",
-      barcode: "920100000020",
-      mrp: 340,
-      stock: 80,
-      gst: "5%",
-      category: "Standard Plastic Packaging"
-    },
-
-    // MIRCHI
-
-    {
-      id: 21,
-      name: "MIRCHI POWDER 50G",
-      sku: "NZ-MP-50",
-      barcode: "920100000021",
-      mrp: 35,
-      stock: 180,
-      gst: "5%",
-      category: "Standard Plastic Packaging"
-    },
-
-    {
-      id: 22,
-      name: "MIRCHI POWDER 100G",
-      sku: "NZ-MP-100",
-      barcode: "920100000022",
-      mrp: 65,
-      stock: 160,
-      gst: "5%",
-      category: "Standard Plastic Packaging"
-    },
-
-    {
-      id: 23,
-      name: "MIRCHI POWDER 200G",
-      sku: "NZ-MP-200",
-      barcode: "920100000023",
-      mrp: 120,
-      stock: 130,
-      gst: "5%",
-      category: "Standard Plastic Packaging"
-    },
-
-    {
-      id: 24,
-      name: "MIRCHI POWDER 500G",
-      sku: "NZ-MP-500",
-      barcode: "920100000024",
-      mrp: 280,
-      stock: 100,
-      gst: "5%",
-      category: "Standard Plastic Packaging"
-    },
-
-    {
-      id: 25,
-      name: "MIRCHI POWDER 1KG",
-      sku: "NZ-MP-1KG",
-      barcode: "920100000025",
-      mrp: 520,
-      stock: 70,
-      gst: "5%",
-      category: "Standard Plastic Packaging"
-    },
-
-    // DHANIYA
-
-    {
-      id: 26,
-      name: "DHANIYA POWDER 50G",
-      sku: "NZ-DP-50",
-      barcode: "920100000026",
-      mrp: 20,
-      stock: 190,
-      gst: "5%",
-      category: "Standard Plastic Packaging"
-    },
-
-    {
-      id: 27,
-      name: "DHANIYA POWDER 100G",
-      sku: "NZ-DP-100",
-      barcode: "920100000027",
-      mrp: 40,
-      stock: 170,
-      gst: "5%",
-      category: "Standard Plastic Packaging"
-    },
-
-    {
-      id: 28,
-      name: "DHANIYA POWDER 200G",
-      sku: "NZ-DP-200",
-      barcode: "920100000028",
-      mrp: 75,
-      stock: 150,
-      gst: "5%",
-      category: "Standard Plastic Packaging"
-    },
-
-    {
-      id: 29,
-      name: "DHANIYA POWDER 500G",
-      sku: "NZ-DP-500",
-      barcode: "920100000029",
-      mrp: 160,
-      stock: 100,
-      gst: "5%",
-      category: "Standard Plastic Packaging"
-    },
-
-    {
-      id: 30,
-      name: "DHANIYA POWDER 1KG",
-      sku: "NZ-DP-1KG",
-      barcode: "920100000030",
-      mrp: 300,
-      stock: 80,
-      gst: "5%",
-      category: "Standard Plastic Packaging"
-    },
-
-    // STANDARD GARAM MASALA
-
-    {
-      id: 31,
-      name: "GARAM MASALA 50G",
-      sku: "NZ-SGM-50",
-      barcode: "920100000031",
-      mrp: 45,
-      stock: 150,
-      gst: "5%",
-      category: "Standard Plastic Packaging"
-    },
-
-    {
-      id: 32,
-      name: "GARAM MASALA 100G",
-      sku: "NZ-SGM-100",
-      barcode: "920100000032",
-      mrp: 85,
-      stock: 130,
-      gst: "5%",
-      category: "Standard Plastic Packaging"
-    },
-
-    {
-      id: 33,
-      name: "GARAM MASALA 200G",
-      sku: "NZ-SGM-200",
-      barcode: "920100000033",
-      mrp: 160,
-      stock: 100,
-      gst: "5%",
-      category: "Standard Plastic Packaging"
-    },
-
-    {
-      id: 34,
-      name: "GARAM MASALA 500G",
-      sku: "NZ-SGM-500",
-      barcode: "920100000034",
-      mrp: 360,
-      stock: 70,
-      gst: "5%",
-      category: "Standard Plastic Packaging"
-    },
-
-    {
-      id: 35,
-      name: "GARAM MASALA 1KG",
-      sku: "NZ-SGM-1KG",
-      barcode: "920100000035",
-      mrp: 680,
-      stock: 50,
-      gst: "5%",
-      category: "Standard Plastic Packaging"
     }
+    {
+  id: 16,
+  name: "HALDI POWDER 50G",
+  sku: "NZ-HP-50",
+  barcode: "920100000016",
+  mrp: 25,
+  stock: 200,
+  gst: "5%",
+  category: "Standard Plastic Packaging"
+},
+
+{
+  id: 17,
+  name: "HALDI POWDER 100G",
+  sku: "NZ-HP-100",
+  barcode: "920100000017",
+  mrp: 45,
+  stock: 180,
+  gst: "5%",
+  category: "Standard Plastic Packaging"
+},
+
+{
+  id: 18,
+  name: "HALDI POWDER 200G",
+  sku: "NZ-HP-200",
+  barcode: "920100000018",
+  mrp: 80,
+  stock: 150,
+  gst: "5%",
+  category: "Standard Plastic Packaging"
+},
+
+{
+  id: 19,
+  name: "HALDI POWDER 500G",
+  sku: "NZ-HP-500",
+  barcode: "920100000019",
+  mrp: 180,
+  stock: 120,
+  gst: "5%",
+  category: "Standard Plastic Packaging"
+},
+
+{
+  id: 20,
+  name: "HALDI POWDER 1KG",
+  sku: "NZ-HP-1KG",
+  barcode: "920100000020",
+  mrp: 340,
+  stock: 80,
+  gst: "5%",
+  category: "Standard Plastic Packaging"
+},
+
+// MIRCHI POWDER
+
+{
+  id: 21,
+  name: "MIRCHI POWDER 50G",
+  sku: "NZ-MP-50",
+  barcode: "920100000021",
+  mrp: 35,
+  stock: 180,
+  gst: "5%",
+  category: "Standard Plastic Packaging"
+},
+
+{
+  id: 22,
+  name: "MIRCHI POWDER 100G",
+  sku: "NZ-MP-100",
+  barcode: "920100000022",
+  mrp: 65,
+  stock: 160,
+  gst: "5%",
+  category: "Standard Plastic Packaging"
+},
+
+{
+  id: 23,
+  name: "MIRCHI POWDER 200G",
+  sku: "NZ-MP-200",
+  barcode: "920100000023",
+  mrp: 120,
+  stock: 130,
+  gst: "5%",
+  category: "Standard Plastic Packaging"
+},
+
+{
+  id: 24,
+  name: "MIRCHI POWDER 500G",
+  sku: "NZ-MP-500",
+  barcode: "920100000024",
+  mrp: 280,
+  stock: 100,
+  gst: "5%",
+  category: "Standard Plastic Packaging"
+},
+
+{
+  id: 25,
+  name: "MIRCHI POWDER 1KG",
+  sku: "NZ-MP-1KG",
+  barcode: "920100000025",
+  mrp: 520,
+  stock: 70,
+  gst: "5%",
+  category: "Standard Plastic Packaging"
+},
+
+// DHANIYA POWDER
+
+{
+  id: 26,
+  name: "DHANIYA POWDER 50G",
+  sku: "NZ-DP-50",
+  barcode: "920100000026",
+  mrp: 20,
+  stock: 190,
+  gst: "5%",
+  category: "Standard Plastic Packaging"
+},
+
+{
+  id: 27,
+  name: "DHANIYA POWDER 100G",
+  sku: "NZ-DP-100",
+  barcode: "920100000027",
+  mrp: 40,
+  stock: 170,
+  gst: "5%",
+  category: "Standard Plastic Packaging"
+},
+
+{
+  id: 28,
+  name: "DHANIYA POWDER 200G",
+  sku: "NZ-DP-200",
+  barcode: "920100000028",
+  mrp: 75,
+  stock: 150,
+  gst: "5%",
+  category: "Standard Plastic Packaging"
+},
+
+{
+  id: 29,
+  name: "DHANIYA POWDER 500G",
+  sku: "NZ-DP-500",
+  barcode: "920100000029",
+  mrp: 160,
+  stock: 100,
+  gst: "5%",
+  category: "Standard Plastic Packaging"
+},
+
+{
+  id: 30,
+  name: "DHANIYA POWDER 1KG",
+  sku: "NZ-DP-1KG",
+  barcode: "920100000030",
+  mrp: 300,
+  stock: 80,
+  gst: "5%",
+  category: "Standard Plastic Packaging"
+},
+
+// GARAM MASALA STANDARD
+
+{
+  id: 31,
+  name: "GARAM MASALA 50G",
+  sku: "NZ-SGM-50",
+  barcode: "920100000031",
+  mrp: 45,
+  stock: 150,
+  gst: "5%",
+  category: "Standard Plastic Packaging"
+},
+
+{
+  id: 32,
+  name: "GARAM MASALA 100G",
+  sku: "NZ-SGM-100",
+  barcode: "920100000032",
+  mrp: 85,
+  stock: 130,
+  gst: "5%",
+  category: "Standard Plastic Packaging"
+},
+
+{
+  id: 33,
+  name: "GARAM MASALA 200G",
+  sku: "NZ-SGM-200",
+  barcode: "920100000033",
+  mrp: 160,
+  stock: 100,
+  gst: "5%",
+  category: "Standard Plastic Packaging"
+},
+
+{
+  id: 34,
+  name: "GARAM MASALA 500G",
+  sku: "NZ-SGM-500",
+  barcode: "920100000034",
+  mrp: 360,
+  stock: 70,
+  gst: "5%",
+  category: "Standard Plastic Packaging"
+},
+
+{
+  id: 35,
+  name: "GARAM MASALA 1KG",
+  sku: "NZ-SGM-1KG",
+  barcode: "920100000035",
+  mrp: 680,
+  stock: 50,
+  gst: "5%",
+  category: "Standard Plastic Packaging"
+},
 
   ];
+
+  // STATES
 
   const [products, setProducts] =
     useState([]);
@@ -422,41 +421,24 @@ export default function BarcodeStudio() {
   const [selectedId, setSelectedId] =
     useState(1);
 
+  const barcodeRef = useRef(null);
+
   // LOAD PRODUCTS
 
   useEffect(() => {
 
-    const saved =
-      localStorage.getItem("products");
+    localStorage.removeItem(
+      "products"
+    );
 
-    if(saved){
+    localStorage.setItem(
+      "products",
+      JSON.stringify(defaultProducts)
+    );
 
-      setProducts(
-        JSON.parse(saved)
-      );
-
-    } else {
-
-      setProducts(defaultProducts);
-
-    }
+    setProducts(defaultProducts);
 
   }, []);
-
-  // AUTO SAVE
-
-  useEffect(() => {
-
-    if(products.length > 0){
-
-      localStorage.setItem(
-        "products",
-        JSON.stringify(products)
-      );
-
-    }
-
-  }, [products]);
 
   // SELECTED PRODUCT
 
@@ -466,65 +448,63 @@ export default function BarcodeStudio() {
         p.id === Number(selectedId)
     );
 
+  // EDIT PRODUCT
+
+  const updateField = (
+    field,
+    value
+  ) => {
+
+    const updated =
+      products.map((p)=>
+
+        p.id === selectedProduct.id
+
+          ? {
+              ...p,
+              [field]: value
+            }
+
+          : p
+
+      );
+
+    setProducts(updated);
+
+    localStorage.setItem(
+      "products",
+      JSON.stringify(updated)
+    );
+
+  };
+
   // PRINT
 
   const printBarcode = () => {
 
-    const content =
-      document.getElementById(
-        "barcode-box"
-      ).innerHTML;
-
-    const win =
-      window.open(
-        "",
-        "",
-        "width=900,height=700"
-      );
-
-    win.document.write(`
-
-      <html>
-
-        <head>
-
-          <title>
-            Print Barcode
-          </title>
-
-        </head>
-
-        <body
-          style="
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            height:100vh;
-            font-family:Arial;
-          "
-        >
-
-          ${content}
-
-        </body>
-
-      </html>
-
-    `);
-
-    win.document.close();
-
-    win.print();
+    window.print();
 
   };
 
-  // DOWNLOAD
+  // DOWNLOAD PNG
 
-  const downloadBarcode = () => {
+  const downloadPNG = async () => {
 
-    alert(
-      "Use Print → Save as PDF"
-    );
+    const canvas =
+      await html2canvas(
+        barcodeRef.current
+      );
+
+    const link =
+      document.createElement("a");
+
+    link.download =
+      `${selectedProduct.name}.png`;
+
+    link.href =
+      canvas.toDataURL();
+
+    link.click();
 
   };
 
@@ -532,9 +512,9 @@ export default function BarcodeStudio() {
 
     <div
       style={{
+        minHeight:"100vh",
         background:
           "linear-gradient(135deg,#2b0f0f,#4b1d1d)",
-        minHeight:"100vh",
         padding:"40px",
         fontFamily:"Arial"
       }}
@@ -546,8 +526,8 @@ export default function BarcodeStudio() {
         style={{
           color:"white",
           fontSize:"56px",
-          fontWeight:"bold",
-          marginBottom:"35px"
+          marginBottom:"35px",
+          fontWeight:"bold"
         }}
       >
         Barcode Studio
@@ -560,15 +540,14 @@ export default function BarcodeStudio() {
           background:"white",
           borderRadius:"25px",
           padding:"30px",
-          marginBottom:"25px"
+          marginBottom:"30px"
         }}
       >
 
         <h2
           style={{
-            fontSize:"42px",
-            marginBottom:"20px",
-            color:"#333"
+            fontSize:"40px",
+            marginBottom:"20px"
           }}
         >
           Select Product
@@ -584,9 +563,8 @@ export default function BarcodeStudio() {
           style={{
             width:"100%",
             padding:"18px",
-            borderRadius:"16px",
             fontSize:"22px",
-            border:"2px solid #ddd"
+            borderRadius:"15px"
           }}
         >
 
@@ -607,7 +585,7 @@ export default function BarcodeStudio() {
 
       </div>
 
-      {/* PRODUCT CARD */}
+      {/* PRODUCT */}
 
       {selectedProduct && (
 
@@ -619,16 +597,25 @@ export default function BarcodeStudio() {
           }}
         >
 
-          <h2
+          {/* NAME */}
+
+          <input
+            value={selectedProduct.name}
+            onChange={(e)=>
+              updateField(
+                "name",
+                e.target.value
+              )
+            }
             style={{
-              fontSize:"54px",
+              width:"100%",
+              fontSize:"42px",
               fontWeight:"bold",
               marginBottom:"30px",
-              color:"#222"
+              padding:"18px",
+              borderRadius:"15px"
             }}
-          >
-            {selectedProduct.name}
-          </h2>
+          />
 
           {/* DETAILS */}
 
@@ -644,63 +631,131 @@ export default function BarcodeStudio() {
 
             <div>
 
-              <h3>SKU:</h3>
+              <h3>SKU</h3>
 
-              <p>
-                {selectedProduct.sku}
-              </p>
-
-            </div>
-
-            <div>
-
-              <h3>MRP:</h3>
-
-              <p>
-                ₹ {selectedProduct.mrp}
-              </p>
-
-            </div>
-
-            <div>
-
-              <h3>Stock:</h3>
-
-              <p>
-                {selectedProduct.stock}
-              </p>
+              <input
+                value={selectedProduct.sku}
+                onChange={(e)=>
+                  updateField(
+                    "sku",
+                    e.target.value
+                  )
+                }
+                style={{
+                  width:"100%",
+                  padding:"14px",
+                  borderRadius:"10px"
+                }}
+              />
 
             </div>
 
             <div>
 
-              <h3>GST:</h3>
+              <h3>MRP</h3>
 
-              <p>
-                {selectedProduct.gst}
-              </p>
+              <input
+                value={selectedProduct.mrp}
+                onChange={(e)=>
+                  updateField(
+                    "mrp",
+                    e.target.value
+                  )
+                }
+                style={{
+                  width:"100%",
+                  padding:"14px",
+                  borderRadius:"10px"
+                }}
+              />
 
             </div>
 
             <div>
 
-              <h3>Category:</h3>
+              <h3>Stock</h3>
 
-              <p>
-                {selectedProduct.category}
-              </p>
+              <input
+                value={selectedProduct.stock}
+                onChange={(e)=>
+                  updateField(
+                    "stock",
+                    e.target.value
+                  )
+                }
+                style={{
+                  width:"100%",
+                  padding:"14px",
+                  borderRadius:"10px"
+                }}
+              />
 
             </div>
 
             <div>
 
-              <h3>
-                Barcode Number:
-              </h3>
+              <h3>GST</h3>
 
-              <p>
-                {selectedProduct.barcode}
-              </p>
+              <input
+                value={selectedProduct.gst}
+                onChange={(e)=>
+                  updateField(
+                    "gst",
+                    e.target.value
+                  )
+                }
+                style={{
+                  width:"100%",
+                  padding:"14px",
+                  borderRadius:"10px"
+                }}
+              />
+
+            </div>
+
+            <div>
+
+              <h3>Category</h3>
+
+              <input
+                value={
+                  selectedProduct.category
+                }
+                onChange={(e)=>
+                  updateField(
+                    "category",
+                    e.target.value
+                  )
+                }
+                style={{
+                  width:"100%",
+                  padding:"14px",
+                  borderRadius:"10px"
+                }}
+              />
+
+            </div>
+
+            <div>
+
+              <h3>Barcode Number</h3>
+
+              <input
+                value={
+                  selectedProduct.barcode
+                }
+                onChange={(e)=>
+                  updateField(
+                    "barcode",
+                    e.target.value
+                  )
+                }
+                style={{
+                  width:"100%",
+                  padding:"14px",
+                  borderRadius:"10px"
+                }}
+              />
 
             </div>
 
@@ -709,11 +764,11 @@ export default function BarcodeStudio() {
           {/* BARCODE */}
 
           <div
-            id="barcode-box"
+            ref={barcodeRef}
             style={{
               border:"2px solid #ddd",
               borderRadius:"20px",
-              padding:"45px",
+              padding:"40px",
               textAlign:"center",
               marginBottom:"30px"
             }}
@@ -746,8 +801,8 @@ export default function BarcodeStudio() {
                 color:"black",
                 border:"none",
                 padding:"18px 35px",
-                borderRadius:"16px",
-                fontSize:"22px",
+                borderRadius:"15px",
+                fontSize:"20px",
                 fontWeight:"bold",
                 cursor:"pointer"
               }}
@@ -756,14 +811,14 @@ export default function BarcodeStudio() {
             </button>
 
             <button
-              onClick={downloadBarcode}
+              onClick={downloadPNG}
               style={{
                 background:"#1e88e5",
                 color:"white",
                 border:"none",
                 padding:"18px 35px",
-                borderRadius:"16px",
-                fontSize:"22px",
+                borderRadius:"15px",
+                fontSize:"20px",
                 fontWeight:"bold",
                 cursor:"pointer"
               }}
