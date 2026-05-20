@@ -1,47 +1,59 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function AdminLayout({ children }) {
 
   const router = useRouter();
 
-  const [loading, setLoading] = useState(true);
+  const pathname = usePathname();
+
+  const [allowed, setAllowed] = useState(false);
 
   useEffect(() => {
 
-    const isLoggedIn =
-      localStorage.getItem("nimad-admin-login");
+    // LOGIN PAGE KO ALLOW KARO
+    if (pathname === "/admin") {
 
-    if (isLoggedIn !== "true") {
+      setAllowed(true);
 
-      router.push("/admin");
-
-    } else {
-
-      setLoading(false);
+      return;
 
     }
 
-  }, []);
+    // LOGIN CHECK
+    const login =
+      localStorage.getItem("nimad-admin-login");
 
-  if (loading) {
+    if (login === "true") {
+
+      setAllowed(true);
+
+    } else {
+
+      router.push("/admin");
+
+    }
+
+  }, [pathname]);
+
+  if (!allowed) {
 
     return (
       <div
         style={{
           minHeight: "100vh",
+          background: "#1a0d08",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          background: "#1a0d08",
           color: "white",
-          fontSize: "22px",
+          fontSize: "24px",
           fontWeight: "bold",
         }}
       >
-        Loading Admin Panel...
+        Loading...
       </div>
     );
 
