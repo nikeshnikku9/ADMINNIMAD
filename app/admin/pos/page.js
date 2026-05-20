@@ -9,21 +9,37 @@ export default function POSPage() {
     {
       barcode: "920100000016",
       name: "Haldi Powder 100g",
-      price: 45
+      price: 45,
+      gst: 5
     },
 
     {
       barcode: "920100000021",
       name: "Mirchi Powder 100g",
-      price: 65
+      price: 65,
+      gst: 5
+    },
+
+    {
+      barcode: "920100000026",
+      name: "Dhaniya Powder 100g",
+      price: 55,
+      gst: 5
+    },
+
+    {
+      barcode: "920100000003",
+      name: "Meat Masala 100g",
+      price: 160,
+      gst: 12
     }
 
   ];
 
-  const [barcode, setBarcode] =
+  const [barcode,setBarcode] =
     useState("");
 
-  const [cart, setCart] =
+  const [cart,setCart] =
     useState([]);
 
   const addProduct = () => {
@@ -51,16 +67,23 @@ export default function POSPage() {
 
   };
 
-  const total =
+  const subtotal =
     cart.reduce(
-
       (sum,item)=>
-
         sum + item.price,
-
       0
-
     );
+
+  const gstAmount =
+    cart.reduce(
+      (sum,item)=>
+        sum +
+        (item.price * item.gst)/100,
+      0
+    );
+
+  const grandTotal =
+    subtotal + gstAmount;
 
   return (
 
@@ -75,19 +98,20 @@ export default function POSPage() {
 
       <h1
         style={{
-          fontSize: "40px",
+          fontSize: "42px",
           color: "#f4c400",
-          marginBottom: "30px"
+          marginBottom: "25px"
         }}
       >
-        POS Billing
+        GST POS Billing
       </h1>
 
+      {/* INPUT */}
       <div
         style={{
           display: "flex",
           gap: "15px",
-          marginBottom: "30px"
+          marginBottom: "25px"
         }}
       >
 
@@ -98,11 +122,11 @@ export default function POSPage() {
               e.target.value
             )
           }
-          placeholder="Enter Barcode"
+          placeholder="Scan or Enter Barcode"
           style={{
             flex: 1,
             padding: "16px",
-            borderRadius: "10px",
+            borderRadius: "12px",
             border: "none",
             fontSize: "18px"
           }}
@@ -113,67 +137,191 @@ export default function POSPage() {
           style={{
             background: "#f4c400",
             border: "none",
-            padding: "16px 30px",
-            borderRadius: "10px",
-            fontWeight: "bold"
+            padding: "16px 28px",
+            borderRadius: "12px",
+            fontWeight: "bold",
+            cursor: "pointer"
           }}
         >
-          Add
+          Add Product
         </button>
 
       </div>
 
+      {/* GST BILL */}
       <div
+        id="bill-area"
         style={{
-          background: "#4a1d12",
-          padding: "20px",
-          borderRadius: "15px"
+          background: "white",
+          color: "black",
+          borderRadius: "15px",
+          padding: "30px"
         }}
       >
 
-        {cart.map((item,index)=>(
-
-          <div
-            key={index}
-            style={{
-              display: "flex",
-              justifyContent:
-                "space-between",
-              marginBottom: "15px",
-              borderBottom:
-                "1px solid rgba(255,255,255,0.1)",
-              paddingBottom: "10px"
-            }}
-          >
-
-            <div>
-
-              <h3>
-                {item.name}
-              </h3>
-
-              <p>
-                {item.barcode}
-              </p>
-
-            </div>
-
-            <h3>
-              ₹{item.price}
-            </h3>
-
-          </div>
-
-        ))}
-
-        <h2
+        {/* HEADER */}
+        <div
           style={{
-            marginTop: "20px",
-            color: "#f4c400"
+            textAlign: "center",
+            marginBottom: "25px"
           }}
         >
-          Total: ₹{total}
-        </h2>
+
+          <h1
+            style={{
+              fontSize: "34px",
+              marginBottom: "10px"
+            }}
+          >
+            NIMAD ZAYKA SPICES
+          </h1>
+
+          <p>
+            MUKESH AND SONS MASALA UDHYOG
+          </p>
+
+          <p>
+            Julwaniya Road Rajpur 451447
+          </p>
+
+          <p>
+            GSTIN:
+            23MUCPS2534K1ZA
+          </p>
+
+          <p>
+            Contact:
+            6265996333
+          </p>
+
+        </div>
+
+        {/* TABLE */}
+        <table
+          style={{
+            width: "100%",
+            borderCollapse:
+              "collapse"
+          }}
+        >
+
+          <thead>
+
+            <tr
+              style={{
+                background: "#f4c400"
+              }}
+            >
+
+              <th style={th}>
+                Product
+              </th>
+
+              <th style={th}>
+                Barcode
+              </th>
+
+              <th style={th}>
+                GST
+              </th>
+
+              <th style={th}>
+                Price
+              </th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            {cart.map((item,index)=>(
+
+              <tr key={index}>
+
+                <td style={td}>
+                  {item.name}
+                </td>
+
+                <td style={td}>
+                  {item.barcode}
+                </td>
+
+                <td style={td}>
+                  {item.gst}%
+                </td>
+
+                <td style={td}>
+                  ₹{item.price}
+                </td>
+
+              </tr>
+
+            ))}
+
+          </tbody>
+
+        </table>
+
+        {/* TOTALS */}
+        <div
+          style={{
+            marginTop: "30px",
+            textAlign: "right"
+          }}
+        >
+
+          <h3>
+            Subtotal:
+            ₹{subtotal.toFixed(2)}
+          </h3>
+
+          <h3>
+            GST:
+            ₹{gstAmount.toFixed(2)}
+          </h3>
+
+          <h1
+            style={{
+              color: "green"
+            }}
+          >
+            Total:
+            ₹{grandTotal.toFixed(2)}
+          </h1>
+
+        </div>
+
+      </div>
+
+      {/* BUTTONS */}
+      <div
+        style={{
+          display: "flex",
+          gap: "15px",
+          marginTop: "25px"
+        }}
+      >
+
+        <button
+          onClick={()=>
+            window.print()
+          }
+          style={btn}
+        >
+          Print GST Bill
+        </button>
+
+        <button
+          onClick={()=>
+            alert(
+              "Camera Scanner Next Upgrade"
+            )
+          }
+          style={btn}
+        >
+          Open Camera Scanner
+        </button>
 
       </div>
 
@@ -182,3 +330,41 @@ export default function POSPage() {
   );
 
 }
+
+const th = {
+
+  border:
+    "1px solid #ccc",
+
+  padding: "12px"
+
+};
+
+const td = {
+
+  border:
+    "1px solid #ccc",
+
+  padding: "12px",
+
+  textAlign: "center"
+
+};
+
+const btn = {
+
+  background: "#f4c400",
+
+  border: "none",
+
+  padding: "16px 28px",
+
+  borderRadius: "12px",
+
+  fontWeight: "bold",
+
+  cursor: "pointer",
+
+  fontSize: "16px"
+
+};
