@@ -1,202 +1,100 @@
 "use client";
 
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
-
-export default function Dashboard() {
-
-  const router = useRouter();
-
-  useEffect(() => {
-
-    const auth =
-      localStorage.getItem("nimad-admin");
-
-    if (auth !== "loggedin") {
-
-      router.push("/admin");
-
-    }
-
-  }, []);
-
-  const logout = () => {
-
-    localStorage.removeItem(
-      "nimad-admin"
-    );
-
-    router.push("/admin");
-
-  };
+export default function DashboardPage() {
 
   return (
 
-    <main
+    <div
       style={{
-
         minHeight: "100vh",
-
-        background:
-          "linear-gradient(#2b0f08,#3b170b)",
-
-        padding: "30px",
-
+        background: "#2a120d",
         color: "white",
-
+        padding: "40px",
       }}
     >
 
-      <div
+      <h1
         style={{
-
-          display: "flex",
-
-          justifyContent: "space-between",
-
-          alignItems: "center",
-
-          marginBottom: "35px",
-
+          fontSize: "42px",
+          marginBottom: "20px",
+          color: "#f4c400",
         }}
       >
+        Admin Dashboard
+      </h1>
 
-        <div>
-
-          <h1
-            style={{
-              fontSize: "40px",
-            }}
-          >
-            Admin Dashboard
-          </h1>
-
-          <p
-            style={{
-              marginTop: "8px",
-              color: "#f5c542",
-            }}
-          >
-            NIMAD ZAYKA SPICES
-          </p>
-
-        </div>
-
-        <button
-          onClick={logout}
-
-          style={{
-
-            padding: "12px 22px",
-
-            border: "none",
-
-            borderRadius: "12px",
-
-            background: "#c40000",
-
-            color: "white",
-
-            fontWeight: "bold",
-
-            cursor: "pointer",
-
-          }}
-        >
-          Logout
-        </button>
-
-      </div>
+      <p
+        style={{
+          fontSize: "20px",
+        }}
+      >
+        Welcome to Nimad Zayka Admin Panel
+      </p>
 
       <div
         style={{
-
           display: "grid",
-
           gridTemplateColumns:
             "repeat(auto-fit,minmax(250px,1fr))",
-
           gap: "20px",
-
+          marginTop: "40px",
         }}
       >
 
-        <Card
-          title="Products"
-          link="/admin/products"
-        />
-
-        <Card
-          title="Barcode Studio"
-          link="/admin/barcode"
-        />
-
-        <Card
-          title="QR Generator"
-          link="/admin/qrcode"
-        />
-
-        <Card
-          title="Enquiries"
-          link="/admin/enquiries"
-        />
-
-      </div>
-
-    </main>
-
-  );
-
-}
-
-function Card({ title, link }) {
-
-  return (
-
-    <Link
-      href={link}
-
-      style={{
-        textDecoration: "none",
-      }}
-    >
-
-      <div
-        style={{
-
-          background:
-            "rgba(255,255,255,.06)",
-
-          border:
-            "1px solid rgba(255,255,255,.08)",
-
-          borderRadius: "22px",
-
-          padding: "30px",
-
-          color: "white",
-
-          backdropFilter: "blur(10px)",
-
-          boxShadow:
-            "0 0 25px rgba(0,0,0,.25)",
-
-        }}
-      >
-
-        <h2
-          style={{
-            fontSize: "28px",
-          }}
+        <a
+          href="/admin/products"
+          style={card}
         >
-          {title}
-        </h2>
+          Products
+        </a>
+
+        <a
+          href="/admin/barcode"
+          style={card}
+        >
+          Barcode Studio
+        </a>
+
+        <a
+          href="/admin/qrcode"
+          style={card}
+        >
+          QR Generator
+        </a>
+
+        <a
+          href="/admin/enquiries"
+          style={card}
+        >
+          Enquiries
+        </a>
 
       </div>
 
-    </Link>
+    </div>
 
   );
 
 }
+
+const card = {
+
+  background: "#5a2415",
+
+  padding: "30px",
+
+  borderRadius: "18px",
+
+  textDecoration: "none",
+
+  color: "white",
+
+  fontSize: "24px",
+
+  fontWeight: "bold",
+
+  textAlign: "center",
+
+  boxShadow: "0 5px 15px rgba(0,0,0,0.3)"
+
+};
