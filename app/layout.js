@@ -1,23 +1,14 @@
-import './globals.css'
+import "./globals.css";
 
 export const metadata = {
-  title: 'Nimad Zayka Spices',
-  description: 'Premium Indian Spices',
-}
+  title: "Admin Nimad",
+  description: "Nimad Zayka Admin Panel",
+};
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        style={{
-          margin: 0,
-          padding: 0,
-          backgroundColor: '#1a120b',
-          color: 'white',
-        }}
-      >
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
-  )
+  );
 }
