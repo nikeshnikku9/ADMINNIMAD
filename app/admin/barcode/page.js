@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Barcode from "react-barcode";
-import QRCode from "react-qr-code";
 
 export default function BarcodeStudio() {
 
@@ -51,7 +50,7 @@ export default function BarcodeStudio() {
       sku: "NZ-GM-50",
       barcode: "920100000004",
       mrp: 55,
-      stock: 90,
+      stock: 100,
       gst: "12%",
       category: "Premium Box Packaging"
     },
@@ -73,7 +72,7 @@ export default function BarcodeStudio() {
       sku: "NZ-SPM-50",
       barcode: "920100000006",
       mrp: 65,
-      stock: 100,
+      stock: 90,
       gst: "12%",
       category: "Premium Box Packaging"
     },
@@ -84,7 +83,7 @@ export default function BarcodeStudio() {
       sku: "NZ-SPM-100",
       barcode: "920100000007",
       mrp: 125,
-      stock: 80,
+      stock: 70,
       gst: "12%",
       category: "Premium Box Packaging"
     },
@@ -106,7 +105,7 @@ export default function BarcodeStudio() {
       sku: "NZ-DBM-100",
       barcode: "920100000009",
       mrp: 100,
-      stock: 90,
+      stock: 80,
       gst: "12%",
       category: "Premium Box Packaging"
     },
@@ -117,7 +116,7 @@ export default function BarcodeStudio() {
       sku: "NZ-KM-50",
       barcode: "920100000010",
       mrp: 70,
-      stock: 70,
+      stock: 60,
       gst: "12%",
       category: "Premium Box Packaging"
     },
@@ -128,7 +127,7 @@ export default function BarcodeStudio() {
       sku: "NZ-KM-100",
       barcode: "920100000011",
       mrp: 140,
-      stock: 60,
+      stock: 50,
       gst: "12%",
       category: "Premium Box Packaging"
     },
@@ -172,12 +171,12 @@ export default function BarcodeStudio() {
       sku: "NZ-HMP-200",
       barcode: "920100000015",
       mrp: 90,
-      stock: 150,
+      stock: 100,
       gst: "5%",
       category: "Premium Box Packaging"
     },
 
-    // STANDARD PACKAGING
+    // HALDI
 
     {
       id: 16,
@@ -196,7 +195,7 @@ export default function BarcodeStudio() {
       sku: "NZ-HP-100",
       barcode: "920100000017",
       mrp: 45,
-      stock: 170,
+      stock: 180,
       gst: "5%",
       category: "Standard Plastic Packaging"
     },
@@ -207,7 +206,7 @@ export default function BarcodeStudio() {
       sku: "NZ-HP-200",
       barcode: "920100000018",
       mrp: 80,
-      stock: 140,
+      stock: 150,
       gst: "5%",
       category: "Standard Plastic Packaging"
     },
@@ -218,7 +217,7 @@ export default function BarcodeStudio() {
       sku: "NZ-HP-500",
       barcode: "920100000019",
       mrp: 180,
-      stock: 100,
+      stock: 120,
       gst: "5%",
       category: "Standard Plastic Packaging"
     },
@@ -233,6 +232,8 @@ export default function BarcodeStudio() {
       gst: "5%",
       category: "Standard Plastic Packaging"
     },
+
+    // MIRCHI
 
     {
       id: 21,
@@ -289,6 +290,8 @@ export default function BarcodeStudio() {
       category: "Standard Plastic Packaging"
     },
 
+    // DHANIYA
+
     {
       id: 26,
       name: "DHANIYA POWDER 50G",
@@ -317,7 +320,7 @@ export default function BarcodeStudio() {
       sku: "NZ-DP-200",
       barcode: "920100000028",
       mrp: 75,
-      stock: 140,
+      stock: 150,
       gst: "5%",
       category: "Standard Plastic Packaging"
     },
@@ -344,10 +347,12 @@ export default function BarcodeStudio() {
       category: "Standard Plastic Packaging"
     },
 
+    // STANDARD GARAM MASALA
+
     {
       id: 31,
       name: "GARAM MASALA 50G",
-      sku: "NZ-GMS-50",
+      sku: "NZ-SGM-50",
       barcode: "920100000031",
       mrp: 45,
       stock: 150,
@@ -358,7 +363,7 @@ export default function BarcodeStudio() {
     {
       id: 32,
       name: "GARAM MASALA 100G",
-      sku: "NZ-GMS-100",
+      sku: "NZ-SGM-100",
       barcode: "920100000032",
       mrp: 85,
       stock: 130,
@@ -369,7 +374,7 @@ export default function BarcodeStudio() {
     {
       id: 33,
       name: "GARAM MASALA 200G",
-      sku: "NZ-GMS-200",
+      sku: "NZ-SGM-200",
       barcode: "920100000033",
       mrp: 160,
       stock: 100,
@@ -380,10 +385,10 @@ export default function BarcodeStudio() {
     {
       id: 34,
       name: "GARAM MASALA 500G",
-      sku: "NZ-GMS-500",
+      sku: "NZ-SGM-500",
       barcode: "920100000034",
       mrp: 360,
-      stock: 80,
+      stock: 70,
       gst: "5%",
       category: "Standard Plastic Packaging"
     },
@@ -391,10 +396,10 @@ export default function BarcodeStudio() {
     {
       id: 35,
       name: "GARAM MASALA 1KG",
-      sku: "NZ-GMS-1KG",
+      sku: "NZ-SGM-1KG",
       barcode: "920100000035",
       mrp: 680,
-      stock: 60,
+      stock: 50,
       gst: "5%",
       category: "Standard Plastic Packaging"
     }
@@ -402,128 +407,427 @@ export default function BarcodeStudio() {
   ];
 
   const [products, setProducts] =
-    useState(defaultProducts);
+    useState([]);
+
+  const [selectedId, setSelectedId] =
+    useState(1);
+
+  useEffect(() => {
+
+    const saved =
+      localStorage.getItem("products");
+
+    if(saved){
+
+      setProducts(
+        JSON.parse(saved)
+      );
+
+    } else {
+
+      setProducts(defaultProducts);
+
+    }
+
+  }, []);
+
+  useEffect(() => {
+
+    if(products.length > 0){
+
+      localStorage.setItem(
+        "products",
+        JSON.stringify(products)
+      );
+
+    }
+
+  }, [products]);
+
+  const selectedProduct =
+    products.find(
+      (p)=>
+        p.id === Number(selectedId)
+    );
+
+  const printBarcode = () => {
+
+    const content =
+      document.getElementById(
+        "barcode-box"
+      ).innerHTML;
+
+    const win =
+      window.open(
+        "",
+        "",
+        "width=900,height=700"
+      );
+
+    win.document.write(`
+
+      <html>
+
+        <head>
+
+          <title>
+            Print Barcode
+          </title>
+
+        </head>
+
+        <body
+          style="
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            height:100vh;
+            font-family:Arial;
+          "
+        >
+
+          ${content}
+
+        </body>
+
+      </html>
+
+    `);
+
+    win.document.close();
+
+    win.print();
+
+  };
+
+  const downloadBarcode = () => {
+
+    window.print();
+
+  };
 
   return (
 
     <div
       style={{
-        padding: "30px",
-        background: "#3d1717",
-        minHeight: "100vh",
-        color: "white",
-        fontFamily: "Arial"
+        background:
+          "linear-gradient(135deg,#2b0f0f,#4b1d1d)",
+        minHeight:"100vh",
+        padding:"40px",
+        fontFamily:"Arial"
       }}
     >
 
+      {/* TITLE */}
+
       <h1
         style={{
-          fontSize: "42px",
-          marginBottom: "30px"
+          color:"white",
+          fontSize:"56px",
+          fontWeight:"bold",
+          marginBottom:"35px"
         }}
       >
-        NIMAD ZAYKA PRODUCT DATABASE
+        Barcode Studio
       </h1>
+
+      {/* SELECT BOX */}
 
       <div
         style={{
-          display: "grid",
-          gridTemplateColumns:
-            "repeat(auto-fit,minmax(350px,1fr))",
-          gap: "20px"
+          background:"white",
+          borderRadius:"25px",
+          padding:"30px",
+          marginBottom:"25px",
+          boxShadow:
+            "0 10px 30px rgba(0,0,0,0.2)"
         }}
       >
 
-        {products.map((product)=>(
+        <h2
+          style={{
+            fontSize:"42px",
+            marginBottom:"20px",
+            color:"#333"
+          }}
+        >
+          Select Product
+        </h2>
+
+        <select
+          value={selectedId}
+          onChange={(e)=>
+            setSelectedId(
+              e.target.value
+            )
+          }
+          style={{
+            width:"100%",
+            padding:"18px",
+            borderRadius:"16px",
+            fontSize:"22px",
+            border:"2px solid #ddd"
+          }}
+        >
+
+          {products.map((product)=>(
+
+            <option
+              key={product.id}
+              value={product.id}
+            >
+
+              {product.name}
+
+            </option>
+
+          ))}
+
+        </select>
+
+      </div>
+
+      {/* PRODUCT CARD */}
+
+      {selectedProduct && (
+
+        <div
+          style={{
+            background:"white",
+            borderRadius:"25px",
+            padding:"35px",
+            boxShadow:
+              "0 10px 30px rgba(0,0,0,0.25)"
+          }}
+        >
+
+          <h2
+            style={{
+              fontSize:"54px",
+              fontWeight:"bold",
+              marginBottom:"30px",
+              color:"#222"
+            }}
+          >
+            {selectedProduct.name}
+          </h2>
+
+          {/* DETAILS */}
 
           <div
-            key={product.id}
             style={{
-              background: "white",
-              color: "black",
-              padding: "20px",
-              borderRadius: "20px"
+              display:"grid",
+              gridTemplateColumns:
+                "1fr 1fr",
+              gap:"25px",
+              marginBottom:"35px"
             }}
           >
 
-            <h2>
-              {product.name}
-            </h2>
+            <div>
 
-            <p>
-              <strong>SKU:</strong>
-              {" "}
-              {product.sku}
-            </p>
+              <h3
+                style={{
+                  fontSize:"28px",
+                  color:"#555"
+                }}
+              >
+                SKU:
+              </h3>
 
-            <p>
-              <strong>MRP:</strong>
-              {" "}
-              ₹{product.mrp}
-            </p>
-
-            <p>
-              <strong>GST:</strong>
-              {" "}
-              {product.gst}
-            </p>
-
-            <p>
-              <strong>Stock:</strong>
-              {" "}
-              {product.stock}
-            </p>
-
-            <p>
-              <strong>Category:</strong>
-              {" "}
-              {product.category}
-            </p>
-
-            <p>
-              <strong>Barcode:</strong>
-              {" "}
-              {product.barcode}
-            </p>
-
-            <div
-              style={{
-                background: "white",
-                padding: "15px",
-                textAlign: "center",
-                borderRadius: "12px",
-                marginTop: "20px"
-              }}
-            >
-
-              <Barcode
-                value={product.barcode}
-                width={1.5}
-                height={70}
-                fontSize={14}
-              />
+              <p
+                style={{
+                  fontSize:"32px",
+                  marginTop:"8px"
+                }}
+              >
+                {selectedProduct.sku}
+              </p>
 
             </div>
 
-            <div
-              style={{
-                marginTop: "20px",
-                textAlign: "center"
-              }}
-            >
+            <div>
 
-              <QRCode
-                size={120}
-                value={`https://nimadzayka.com/product/${product.barcode}`}
-              />
+              <h3
+                style={{
+                  fontSize:"28px",
+                  color:"#555"
+                }}
+              >
+                MRP:
+              </h3>
+
+              <p
+                style={{
+                  fontSize:"32px",
+                  marginTop:"8px"
+                }}
+              >
+                ₹ {selectedProduct.mrp}
+              </p>
+
+            </div>
+
+            <div>
+
+              <h3
+                style={{
+                  fontSize:"28px",
+                  color:"#555"
+                }}
+              >
+                Stock:
+              </h3>
+
+              <p
+                style={{
+                  fontSize:"32px",
+                  marginTop:"8px"
+                }}
+              >
+                {selectedProduct.stock}
+              </p>
+
+            </div>
+
+            <div>
+
+              <h3
+                style={{
+                  fontSize:"28px",
+                  color:"#555"
+                }}
+              >
+                GST:
+              </h3>
+
+              <p
+                style={{
+                  fontSize:"32px",
+                  marginTop:"8px"
+                }}
+              >
+                {selectedProduct.gst}
+              </p>
+
+            </div>
+
+            <div>
+
+              <h3
+                style={{
+                  fontSize:"28px",
+                  color:"#555"
+                }}
+              >
+                Category:
+              </h3>
+
+              <p
+                style={{
+                  fontSize:"30px",
+                  marginTop:"8px"
+                }}
+              >
+                {selectedProduct.category}
+              </p>
+
+            </div>
+
+            <div>
+
+              <h3
+                style={{
+                  fontSize:"28px",
+                  color:"#555"
+                }}
+              >
+                Barcode Number:
+              </h3>
+
+              <p
+                style={{
+                  fontSize:"30px",
+                  marginTop:"8px"
+                }}
+              >
+                {selectedProduct.barcode}
+              </p>
 
             </div>
 
           </div>
 
-        ))}
+          {/* BARCODE */}
 
-      </div>
+          <div
+            id="barcode-box"
+            style={{
+              border:"2px solid #ddd",
+              borderRadius:"20px",
+              padding:"45px",
+              textAlign:"center",
+              marginBottom:"30px"
+            }}
+          >
+
+            <Barcode
+              value={
+                selectedProduct.barcode
+              }
+              width={3}
+              height={120}
+              fontSize={24}
+            />
+
+          </div>
+
+          {/* BUTTONS */}
+
+          <div
+            style={{
+              display:"flex",
+              gap:"20px"
+            }}
+          >
+
+            <button
+              onClick={printBarcode}
+              style={{
+                background:"#f4b400",
+                color:"black",
+                border:"none",
+                padding:"18px 35px",
+                borderRadius:"16px",
+                fontSize:"22px",
+                fontWeight:"bold",
+                cursor:"pointer"
+              }}
+            >
+              Print Barcode
+            </button>
+
+            <button
+              onClick={downloadBarcode}
+              style={{
+                background:"#1e88e5",
+                color:"white",
+                border:"none",
+                padding:"18px 35px",
+                borderRadius:"16px",
+                fontSize:"22px",
+                fontWeight:"bold",
+                cursor:"pointer"
+              }}
+            >
+              Download PNG
+            </button>
+
+          </div>
+
+        </div>
+
+      )}
 
     </div>
 
