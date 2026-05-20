@@ -48,7 +48,7 @@ export default function Home() {
         minHeight: "100vh",
         width: "100%",
         backgroundImage:
-          "url('https://i.ibb.co/4RPtjNR5/Chat-GPT-Image-May-20-2026-02-48-53-PM.png')",
+          "url('https://i.ibb.co/LHScyHx/Chat-GPT-Image-May-20-2026-02-58-43-PM.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
