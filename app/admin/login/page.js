@@ -1,10 +1,18 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { Lock, LogIn } from "lucide-react";
 
 export default function AdminLoginPage() {
+  return (
+    <Suspense fallback={<LoginFallback />}>
+      <AdminLoginForm />
+    </Suspense>
+  );
+}
+
+function AdminLoginForm() {
   const searchParams = useSearchParams();
   const next = searchParams.get("next") || "/admin/dashboard";
   const [email, setEmail] = useState("admin@nimadzayka.com");
@@ -72,6 +80,21 @@ export default function AdminLoginPage() {
           <span>Billing: billing@nimadzayka.com / billing12345</span>
         </div>
       </form>
+    </main>
+  );
+}
+
+function LoginFallback() {
+  return (
+    <main className="login-page">
+      <div className="login-card">
+        <div className="login-mark">
+          <Lock size={26} />
+        </div>
+        <p className="eyebrow">Nimad Zayka ERP</p>
+        <h1>Admin Login</h1>
+        <p className="login-copy">Loading secure login...</p>
+      </div>
     </main>
   );
 }
