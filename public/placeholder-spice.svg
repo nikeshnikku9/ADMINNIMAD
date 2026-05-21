@@ -1,0 +1,8 @@
+<svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="160" height="160" rx="24" fill="#3A160D"/>
+  <circle cx="80" cy="80" r="54" fill="#6E2B16"/>
+  <circle cx="80" cy="80" r="36" fill="#B45309"/>
+  <path d="M54 91C66 106 94 106 106 91C96 98 64 98 54 91Z" fill="#FACC15"/>
+  <path d="M53 69C67 54 93 54 107 69C96 63 64 63 53 69Z" fill="#F59E0B"/>
+  <text x="80" y="84" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#FFF7D6">NZ</text>
+</svg>

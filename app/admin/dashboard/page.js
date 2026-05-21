@@ -1,6 +1,10 @@
 "use client";
 
 export default function DashboardPage() {
+  const logout = async () => {
+    await fetch("/api/auth/logout", { method: "POST" });
+    window.location.href = "/admin/login";
+  };
 
   return (
 
@@ -22,6 +26,24 @@ export default function DashboardPage() {
       >
         Admin Dashboard
       </h1>
+
+      <button
+        onClick={logout}
+        style={{
+          position: "absolute",
+          right: "30px",
+          top: "30px",
+          background: "rgba(255,255,255,0.08)",
+          border: "1px solid rgba(250,204,21,0.25)",
+          color: "#fff7d6",
+          padding: "10px 16px",
+          borderRadius: "8px",
+          cursor: "pointer",
+          fontWeight: "bold",
+        }}
+      >
+        Logout
+      </button>
 
       <p
         style={{
@@ -46,6 +68,13 @@ export default function DashboardPage() {
           style={card}
         >
           Products
+        </a>
+
+        <a
+          href="/admin/inventory"
+          style={card}
+        >
+          Inventory ERP
         </a>
 
         <a
